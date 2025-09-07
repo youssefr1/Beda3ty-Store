@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1084119560136",
+    "project_id": "beda3ty-store",
+    "storage_bucket": "beda3ty-store.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084119560136:android:fb8d9974bd6dd936d65afd",
+        "android_client_info": {
+          "package_name": "com.example.astro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkS9bxF_3c0c0DZWRMztINEPQpiJxRfrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
