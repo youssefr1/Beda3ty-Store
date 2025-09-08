@@ -39,7 +39,8 @@ dependencies:
   #core
   connectivity_plus: ^6.1.5
   flutter_dotenv: ^6.0.0
-  flutter_screenutil: ^5.9.3
+  flutter_screenutil: ^5.9.0
+
 
 
 dev_dependencies:
@@ -58,7 +59,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/assets/icons/Minimalist Shopping App Icon.png"
+  image_path: "assets/assets/icons/app.png"
   adaptive_icon_background: "#ffffff"
   adaptive_icon_foreground: "assets/assets/icons/play_store_512.png"
 # For information on the generic Dart part of this file, see the

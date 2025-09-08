@@ -1,6 +1,7 @@
 import 'package:astro/core/app/connectivily_control.dart';
 import 'package:astro/core/common/screens/no_network_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Beda3tyStoreApp extends StatelessWidget {
   const Beda3tyStoreApp({super.key});
@@ -11,15 +12,18 @@ class Beda3tyStoreApp extends StatelessWidget {
       valueListenable: ConnectivityControler.instance.isConected,
       builder: (context, isConnected, _) {
         if (isConnected) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.deepPurple,
+          return ScreenUtilInit(
+            minTextAdapt: true,
+            child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.deepPurple,
+                ),
               ),
-            ),
-            home: Scaffold(
-              appBar: AppBar(title: const Text('Beda3ty')),
+              home: Scaffold(
+                appBar: AppBar(title: const Text('Beda3ty')),
+              ),
             ),
           );
         } else {
