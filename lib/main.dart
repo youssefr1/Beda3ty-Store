@@ -1,3 +1,4 @@
+import 'package:astro/core/app/connectivily_control.dart';
 import 'package:astro/core/app/env.variable.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ void main() async {
   await EnvVariable.instance.init(envType: EnvTypeEnum.dev);
 
   await Firebase.initializeApp();
+  await ConnectivityControler.instance.init();
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -17,6 +19,5 @@ void main() async {
   ]).then ((_){
     runApp(const Beda3tyStoreApp());
   });
-
 
 }
