@@ -55,6 +55,12 @@ dev_dependencies:
   very_good_analysis: ^9.0.0
   flutter_launcher_icons: ^0.14.4
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/assets/icons/Minimalist Shopping App Icon.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/assets/icons/play_store_512.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
