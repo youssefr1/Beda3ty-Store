@@ -1,4 +1,5 @@
 import 'package:astro/astro_store_app.dart';
+import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/featured/splash/presentation/views/widjets/Sliding_image.dart';
 import 'package:flutter/material.dart';
 
@@ -44,12 +45,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 7), () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Beda3tyStoreApp(),
-        ),
-      );
+      Navigator.pushNamed(context, AppRoutes.testScreen1);
     });
   }
 
