@@ -1,6 +1,5 @@
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/routes/app_routes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TestScreen1 extends StatelessWidget {
@@ -14,9 +13,15 @@ class TestScreen1 extends StatelessWidget {
         title: const Text('test screen 1'),
       ),
       body: Center(
-        child: TextButton(onPressed: (){
-          context.pushNamed(AppRoutes.testScreen2);
-        }, child: Text('to second screen',style: TextStyle(color: Colors.white),)),
+        child: TextButton(
+          onPressed: () {
+            context.pushNamed(AppRoutes.testScreen2);
+          },
+          child: const Text(
+            'to second screen',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
     );
   }
