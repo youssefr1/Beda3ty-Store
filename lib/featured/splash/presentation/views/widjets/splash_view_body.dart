@@ -44,10 +44,14 @@ class _SplashViewBodyState extends State<SplashViewBody>
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 7), () {
-      Navigator.pushNamed(context, AppRoutes.testScreen1);
+    Future.delayed(const Duration(seconds: 5), () {
+      if (mounted) {
+        Navigator.pushReplacementNamed(context, AppRoutes.testScreen1);
+      }
     });
   }
+
+
 
   void initSlidingAnimation() {
     animationController = AnimationController(

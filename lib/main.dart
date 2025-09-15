@@ -18,7 +18,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then ((_){
-    runApp(const SplashView());
+    runApp(const Beda3tyStoreApp());
   });
 
 }

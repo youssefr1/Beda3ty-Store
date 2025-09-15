@@ -6,11 +6,10 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home:  Scaffold(
+    return const Scaffold(
         backgroundColor: Color(0xffB32025),
           body: SplashViewBody()
-      ),
-    );
+      )
+    ;
   }
 }
