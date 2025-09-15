@@ -8,8 +8,8 @@ extension ContextExtensions on BuildContext{
   void pop()=>Navigator.pop(this);
 
 
-  Future<dynamic> pushReplacementNamed(String routeName,Object? arguments){
-    return Navigator.pushReplacementNamed(this, routeName,arguments: arguments);
+  Future<dynamic> pushReplacementNamed(String routeName){
+    return Navigator.pushReplacementNamed(this, routeName);
   }
 
 

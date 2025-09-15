@@ -11,6 +11,7 @@ class TestScreen1 extends StatelessWidget {
       backgroundColor: Colors.blue,
       appBar: AppBar(
         title: const Text('test screen 1'),
+          automaticallyImplyLeading: false
       ),
       body: Center(
         child: TextButton(

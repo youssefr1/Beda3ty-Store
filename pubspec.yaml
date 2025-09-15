@@ -37,7 +37,7 @@ dependencies:
   #firebase
   firebase_core: ^4.1.0
   #core
-  connectivity_plus: ^6.1.5
+  connectivity_plus: ^6.0.3
   flutter_dotenv: ^6.0.0
   flutter_screenutil: ^5.9.0
   go_router: ^16.2.1

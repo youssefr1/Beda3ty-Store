@@ -53,6 +53,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
 
 
+
   void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,

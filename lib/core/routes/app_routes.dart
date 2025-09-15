@@ -19,7 +19,7 @@ class AppRoutes {
       case testScreen2:
         return BaseRoute(page: const TestScreen2());
       default:
-        return BaseRoute(page: const PageUnderBuildScreen());
+        return  BaseRoute(page: const SplashView());
     }
   }
 }
