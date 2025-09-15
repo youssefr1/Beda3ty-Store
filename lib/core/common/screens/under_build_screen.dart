@@ -8,12 +8,14 @@ class PageUnderBuildScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        constraints: const BoxConstraints.expand(),
-        decoration:  const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AppImages.emptyImage),
-            fit: BoxFit.fill,
+      body: Center(
+        child: Container(
+          constraints: const BoxConstraints.expand(),
+          decoration:  const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(AppImages.emptyImage),
+              fit: BoxFit.fill,
+            ),
           ),
         ),
       ),

@@ -17,7 +17,7 @@ class Beda3tyStoreApp extends StatelessWidget {
           valueListenable: ConnectivityControler.instance.isConected,
           builder: (context, isConnected, _) {
             if (isConnected) {
-              return child ?? const SizedBox();
+              return child!;
             } else {
               return const NoNetworkScreen();
             }
