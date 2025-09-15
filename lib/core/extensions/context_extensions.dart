@@ -1,21 +1,27 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-extension ContextExtensions on BuildContext{
-  Future<dynamic> pushNamed(String routeName){
-    return Navigator.pushNamed(this, routeName);
+extension GoRouterExtensions on BuildContext {
+  /// ✅ يضيف صفحة جديدة فوق الحالية (زي push في Navigator)
+  /// - ينفع ترجع للصفحة اللي قبلها
+  void pushRoute(String route) {
+    push(route);
   }
 
-  void pop()=>Navigator.pop(this);
-
-
-  Future<dynamic> pushReplacementNamed(String routeName){
-    return Navigator.pushReplacementNamed(this, routeName);
+  /// ✅ يبدل الصفحة الحالية باللي بعدها (زي pushReplacement في Navigator)
+  /// - ماينفعش ترجع لللي قبلها
+  void goRoute(String route) {
+    go(route);
   }
 
-
-  Future<dynamic> pushAndRemoveUntil(String routeName,Object? arguments){
-    return Navigator.pushNamedAndRemoveUntil(this, routeName,(route)=>false);
+  /// ✅ يرجع صفحة واحدة للخلف (زي Navigator.pop)
+  void popRoute() {
+    pop();
   }
 
-
+  /// ✅ يروح لصفحة جديدة ويمسح كل اللي قبلها (زي pushAndRemoveUntil)
+  /// - مثالي لو عايز تبدأ من صفحة معينة وتمنع الرجوع
+  void pushAndRemoveUntilRoute(String route) {
+    go(route); // go في GoRouter بيمسح اللي قبله أوتوماتيك
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TestScreen1 extends StatelessWidget {
   const TestScreen1({super.key});
@@ -16,7 +17,8 @@ class TestScreen1 extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () {
-            context.pushNamed(AppRoutes.testScreen2);
+            context.pushRoute(AppRouter.screen2);
+
           },
           child: const Text(
             'to second screen',

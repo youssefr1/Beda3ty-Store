@@ -1,26 +1,37 @@
-import 'package:astro/core/common/screens/under_build_screen.dart';
-import 'package:astro/core/routes/base_routes.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:astro/featured/splash/presentation/views/splash_view.dart';
 import 'package:astro/test_screen1.dart';
 import 'package:astro/test_screen2.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:astro/core/common/screens/no_network_screen.dart';
 
-class AppRoutes {
-  static const String splashScreen = '/splashScreen';
-  static const String testScreen1 = '/testScreen1';
-  static const String testScreen2 = '/testScreen2';
+class AppRouter {
+  // ✅ تعريف المسارات كمتغيرات
+  static const String splash = '/splash';
+  static const String screen1 = '/screen1';
+  static const String screen2 = '/screen2';
+  static const String noNetwork = '/no-network';
 
-  static Route<void> onGenerateRoute(RouteSettings settings) {
-    switch (settings.name) {
-      case splashScreen:
-        return BaseRoute(page: const SplashView());
-      case testScreen1:
-        return BaseRoute(page: const TestScreen1());
-      case testScreen2:
-        return BaseRoute(page: const TestScreen2());
-      default:
-        return  BaseRoute(page: const SplashView());
-    }
-  }
+  // ✅ تعريف GoRouter
+  static final GoRouter router = GoRouter(
+    initialLocation: splash,
+    routes: [
+      GoRoute(
+        path: splash,
+        builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(
+        path: screen1,
+        builder: (context, state) => const TestScreen1(),
+      ),
+      GoRoute(
+        path: screen2,
+        builder: (context, state) => const TestScreen2(),
+      ),
+      GoRoute(
+        path: noNetwork,
+        builder: (context, state) => const NoNetworkScreen(),
+      ),
+    ],
+  );
 }
-

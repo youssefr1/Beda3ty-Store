@@ -1,7 +1,9 @@
 import 'package:astro/astro_store_app.dart';
+import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/featured/splash/presentation/views/widjets/Sliding_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -46,7 +48,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 5), () {
       if (mounted) {
-        Navigator.pushReplacementNamed(context, AppRoutes.testScreen1);
+        context.goRoute(AppRouter.screen1); // ✅ يروح لـ screen1 ويمسح السبلاش من الـ stack
       }
     });
   }
