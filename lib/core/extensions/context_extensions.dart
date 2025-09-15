@@ -1,3 +1,5 @@
+import 'package:astro/core/styles/theme/color_extension.dart';
+import 'package:astro/core/styles/theme/image_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,4 +26,10 @@ extension GoRouterExtensions on BuildContext {
   void pushAndRemoveUntilRoute(String route) {
     go(route); // go في GoRouter بيمسح اللي قبله أوتوماتيك
   }
+// Images
+  MyImages get image => Theme.of(this).extension<MyImages>()!;
+
+
+  // colors
+MyColors get theme => Theme.of(this).extension<MyColors>()!;
 }

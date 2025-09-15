@@ -1,5 +1,6 @@
 import 'package:astro/core/common/screens/no_network_screen.dart';
 import 'package:astro/core/routes/app_routes.dart';
+import 'package:astro/core/styles/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:astro/core/app/connectivily_control.dart';
 import 'package:go_router/go_router.dart';
@@ -13,13 +14,14 @@ class Beda3tyStoreApp extends StatelessWidget {
       valueListenable: ConnectivityControler.instance.isConected,
       builder: (context, isConnected, _) {
         return MaterialApp.router(
+          theme: themeLight(),
           debugShowCheckedModeBanner: false,
           routerConfig: AppRouter.router,
           builder: (context, child) {
             if (!isConnected) {
               return const NoNetworkScreen();
             }
-            return child ?? const SizedBox();
+            return child!;
           },
         );
       },
