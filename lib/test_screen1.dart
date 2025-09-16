@@ -28,7 +28,7 @@ backgroundColor: Colors.teal,
           ),
           const SizedBox(height: 20,),
           Text(context.translate(LangKeys.appName),style: TextStyle(fontSize: 30),),
-          Image.asset(context.image.testImage!)
+          Image.asset(context.image.bigNavBar!,width: 200,)
         ],
       ),
     );

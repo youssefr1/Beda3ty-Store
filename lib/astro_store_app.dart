@@ -18,7 +18,7 @@ class Beda3tyStoreApp extends StatelessWidget {
           //theme section
           theme: themeLight(),
           // language section
-          locale: Locale('ar') ,
+          locale: Locale('en') ,
           supportedLocales: AppLocalizationsSetup.supportedLocales,
           localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
           localeResolutionCallback: AppLocalizationsSetup.localeResolutionCallback,

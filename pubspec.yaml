@@ -83,6 +83,8 @@ flutter:
      - .env.dev
      - .env.production
      - assets/assets/images/core/
+     - assets/assets/images/customer/
+     - assets/assets/images/admin/
      - lang/ar.json
      - lang/en.json
 
@@ -90,20 +92,20 @@ flutter:
   fonts:
      - family: Cairo
        fonts:
-         - asset: assets/fonts/arabic/cairo/Cairo-Bold.ttf
+         - asset: assets/assets/fonts/arabic/cairo/Cairo-Bold.ttf
            weight: 700
-         - asset: assets/fonts/arabic/cairo/Cairo-Medium.ttf
+         - asset: assets/assets/fonts/arabic/cairo/Cairo-Medium.ttf
            weight: 500
-         - asset: assets/fonts/arabic/cairo/Cairo-Regular.ttf
+         - asset: assets/assets/fonts/arabic/cairo/Cairo-Regular.ttf
            weight: 400
 
      - family: Poppins
        fonts:
-         - asset: assets/fonts/english/poppins/Poppins-Bold.ttf
+         - asset: assets/assets/fonts/english/poppins/Poppins-Bold.ttf
            weight: 700
-         - asset: assets/fonts/english/poppins/Poppins-Medium.ttf
+         - asset: assets/assets/fonts/english/poppins/Poppins-Medium.ttf
            weight: 500
-         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
+         - asset: assets/assets/fonts/english/poppins/Poppins-Regular.ttf
            weight: 400
   #
   # For details regarding fonts from package dependencies,
