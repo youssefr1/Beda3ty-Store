@@ -1,4 +1,5 @@
 import 'package:astro/core/extensions/context_extensions.dart';
+import 'package:astro/core/language/lang_keys.dart';
 import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/core/styles/images/app_images.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,6 +26,8 @@ backgroundColor: Colors.teal,
               // 👈 جاي من الثيم
             ),
           ),
+          const SizedBox(height: 20,),
+          Text(context.translate(LangKeys.appName),style: TextStyle(fontSize: 30),),
           Image.asset(context.image.testImage!)
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:astro/core/language/app_localizations.dart';
 import 'package:astro/core/styles/theme/color_extension.dart';
 import 'package:astro/core/styles/theme/image_extension.dart';
 import 'package:flutter/material.dart';
@@ -32,4 +33,9 @@ extension GoRouterExtensions on BuildContext {
 
   // colors
 MyColors get theme => Theme.of(this).extension<MyColors>()!;
+
+// language
+String translate (String langKey){
+  return AppLocalizations.of(this)!.translate(langKey)!;
+}
 }
