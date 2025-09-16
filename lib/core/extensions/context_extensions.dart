@@ -32,10 +32,14 @@ extension GoRouterExtensions on BuildContext {
 
 
   // colors
-MyColors get theme => Theme.of(this).extension<MyColors>()!;
+MyColors get color => Theme.of(this).extension<MyColors>()!;
 
 // language
 String translate (String langKey){
   return AppLocalizations.of(this)!.translate(langKey)!;
 }
+
+TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
+
+
 }

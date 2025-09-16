@@ -12,23 +12,38 @@ class TestScreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-backgroundColor: Colors.teal,
+      backgroundColor: Colors.teal,
       appBar: AppBar(
         title: const Text('Test Screen 1'),
-
       ),
       body: Column(
         children: [
           Center(
-            child: TextButton(onPressed: () {
-              context.pushRoute(AppRouter.screen2);
-            }, child: Text(' to second screen',style: TextStyle(color:context.theme.mainColor,fontSize: 30),),
+            child: TextButton(
+              onPressed: () {
+                context.pushRoute(AppRouter.screen2);
+              },
+              child: Text(
+                ' to second screen',
+                style: TextStyle(
+                  color: context.color.mainColor,
+                  fontSize: 30,
+                ),
+              ),
               // 👈 جاي من الثيم
             ),
           ),
-          const SizedBox(height: 20,),
-          Text(context.translate(LangKeys.appName),style: TextStyle(fontSize: 30),),
-          Image.asset(context.image.bigNavBar!,width: 200,)
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            context.translate(LangKeys.appName),
+            style: TextStyle(fontSize: 30),
+          ),
+          Image.asset(
+            context.image.bigNavBar!,
+            width: 200,
+          ),
         ],
       ),
     );
