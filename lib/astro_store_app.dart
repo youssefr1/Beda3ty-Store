@@ -5,6 +5,7 @@ import 'package:astro/core/styles/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:astro/core/app/connectivily_control.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Beda3tyStoreApp extends StatelessWidget {
   const Beda3tyStoreApp({super.key});
@@ -14,22 +15,29 @@ class Beda3tyStoreApp extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: ConnectivityControler.instance.isConected,
       builder: (context, isConnected, _) {
-        return MaterialApp.router(
-          //theme section
-          theme: themeLight(),
-          // language section
-          locale: Locale('en') ,
-          supportedLocales: AppLocalizationsSetup.supportedLocales,
-          localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
-          localeResolutionCallback: AppLocalizationsSetup.localeResolutionCallback,
-          debugShowCheckedModeBanner: false,
-          // route section
-          routerConfig: AppRouter.router,
+        return ScreenUtilInit(
+          designSize: const Size(375, 812), // غير الأبعاد حسب التصميم بتاعك (Figma)
+          minTextAdapt: true,
+          splitScreenMode: true,
           builder: (context, child) {
-            if (!isConnected) {
-              return const NoNetworkScreen();
-            }
-            return child!;
+            return MaterialApp.router(
+              // theme section
+              theme: themeDark(),
+              // language section
+              locale: const Locale('en'),
+              supportedLocales: AppLocalizationsSetup.supportedLocales,
+              localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
+              localeResolutionCallback: AppLocalizationsSetup.localeResolutionCallback,
+              debugShowCheckedModeBanner: false,
+              // route section
+              routerConfig: AppRouter.router,
+              builder: (context, child) {
+                if (!isConnected) {
+                  return const NoNetworkScreen();
+                }
+                return child!;
+              },
+            );
           },
         );
       },

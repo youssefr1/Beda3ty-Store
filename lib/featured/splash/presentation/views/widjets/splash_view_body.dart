@@ -48,7 +48,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 5), () {
       if (mounted) {
-        context.goRoute(AppRouter.screen1); // ✅ يروح لـ screen1 ويمسح السبلاش من الـ stack
+        context.goRoute(AppRouter.login); // ✅ يروح لـ screen1 ويمسح السبلاش من الـ stack
       }
     });
   }

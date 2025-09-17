@@ -58,7 +58,7 @@ class CustomFadeInLeft extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO: sharePreferences
     return FadeInLeft(
-      delay: const Duration(milliseconds: 300),
+      delay: const Duration(milliseconds: 400),
       duration: Duration(milliseconds: duration),
       child: child,
     );
@@ -91,7 +91,7 @@ class CustomFadeInRight extends StatelessWidget {
   Widget build(BuildContext context) {
     //TODO: sharePreferences
     return FadeInRight(
-      delay: const Duration(milliseconds: 300),
+      delay: const Duration(milliseconds: 400),
       duration: Duration(milliseconds: duration),
       child: child,
     );
