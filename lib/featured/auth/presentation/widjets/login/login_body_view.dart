@@ -1,8 +1,15 @@
+import 'package:astro/core/common/animation/animate_do.dart';
+import 'package:astro/core/common/widjets/text_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/language/lang_keys.dart';
+import 'package:astro/core/routes/app_routes.dart';
+import 'package:astro/core/styles/fonts/font_weight_helper.dart';
 import 'package:astro/featured/auth/presentation/widjets/auth_title_info.dart';
 import 'package:astro/featured/auth/presentation/widjets/dark_and_Lang_bar.dart';
+import 'package:astro/featured/auth/presentation/widjets/login/login_button.dart';
+import 'package:astro/featured/auth/presentation/widjets/login/login_text_form.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginBodyView extends StatelessWidget {
@@ -30,11 +37,39 @@ class LoginBodyView extends StatelessWidget {
                 LangKeys.welcome,
               ),
             ),
+
             SizedBox(
               height: 30.h,
             ),
-
-
+            // Email TextField and Password TextField
+            const LoginTextForm(),
+            //
+            SizedBox(
+              height: 30.h,
+            ),
+            const LoginButton(),
+            SizedBox(
+              height: 30.h,
+            ),
+            InkWell(
+              onTap: (){
+                context.pushRoute(AppRouter.signUp);
+              },
+              child: CustomFadeInUp(
+                duration: 600,
+                child: TextApp(
+                  text: context.translate(
+                    LangKeys.createAccount,
+                  ),
+                  theme: context.textStyle.copyWith(
+                    fontSize: 18.sp,
+                    color: context.color.bluePinkLight,
+                    fontWeight: FontWeightHelper.medium,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
