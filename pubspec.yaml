@@ -65,9 +65,9 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/assets/icons/app.png"
+  image_path: "assets/icons/SOOQLY Logo with Shopping Cart Detail.png"
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/assets/icons/play_store_512.png"
+  adaptive_icon_foreground: "assets/icons/SOOQLY Logo with Shopping Cart Detail.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

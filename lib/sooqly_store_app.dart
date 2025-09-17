@@ -7,8 +7,8 @@ import 'package:astro/core/app/connectivily_control.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Beda3tyStoreApp extends StatelessWidget {
-  const Beda3tyStoreApp({super.key});
+class SooqlyStoreApp extends StatelessWidget {
+  const SooqlyStoreApp({super.key});
 
   @override
   Widget build(BuildContext context) {

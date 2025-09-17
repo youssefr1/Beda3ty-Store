@@ -1,4 +1,4 @@
-import 'package:astro/astro_store_app.dart';
+import 'package:astro/sooqly_store_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/featured/splash/presentation/views/widjets/Sliding_image.dart';
@@ -40,13 +40,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
         SlidingImage(
           slidingAnimationImage: slidingAnimationImage,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 24),
       ],
     );
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
         context.goRoute(AppRouter.login); // ✅ يروح لـ screen1 ويمسح السبلاش من الـ stack
       }
@@ -59,7 +59,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 4000),
+      duration: const Duration(milliseconds: 2500),
     );
     animationController.forward();
     super.initState();
