@@ -13,7 +13,7 @@ class AppRouter {
 
 
   static final GoRouter router = GoRouter(
-    initialLocation: login,
+    initialLocation: splash,
     routes: [
 
       GoRoute(

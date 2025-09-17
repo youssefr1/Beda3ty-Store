@@ -8,16 +8,18 @@ import 'package:astro/featured/auth/presentation/widjets/auth_title_info.dart';
 import 'package:astro/featured/auth/presentation/widjets/dark_and_Lang_bar.dart';
 import 'package:astro/featured/auth/presentation/widjets/login/login_button.dart';
 import 'package:astro/featured/auth/presentation/widjets/login/login_text_form.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:astro/featured/auth/presentation/widjets/sign%20up/sign_up_button.dart';
+import 'package:astro/featured/auth/presentation/widjets/sign%20up/sign_up_text_form.dart';
+import 'package:astro/featured/auth/presentation/widjets/sign%20up/user_avatar_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginBodyView extends StatelessWidget {
-  const LoginBodyView({super.key});
+class SignUpBody extends StatelessWidget {
+  const SignUpBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return  Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 20,
@@ -28,38 +30,43 @@ class LoginBodyView extends StatelessWidget {
             //dark mode and language
             const DarkAndLangBar(),
             SizedBox(
-              height: 50.h,
+              height: 30.h,
             ),
             // Welcome Info
             AuthTitleInfo(
-              title: context.translate(LangKeys.login),
+              title: context.translate(LangKeys.signUp),
               description: context.translate(
-                LangKeys.welcome,
+                LangKeys.signUpWelcome,
               ),
             ),
-
             SizedBox(
-              height: 30.h,
+              height: 15.h,
             ),
-            // Email TextField and Password TextField
-            const LoginTextForm(),
+            // user avatar
+            const UserAvatarImages(),
+            SizedBox(
+              height: 20.h,
+            ),
+            // Sign Up  TextField
+            const SignUpTextForm(),
             //
             SizedBox(
               height: 30.h,
             ),
-            const LoginButton(),
+            // sign Up Button
+            const SignUpButton (),
             SizedBox(
               height: 30.h,
             ),
-            InkWell(
+           InkWell(
               onTap: (){
-                context.goRoute(AppRouter.signUp);
+                context.goRoute(AppRouter.login);
               },
               child: CustomFadeInUp(
                 duration: 600,
                 child: TextApp(
                   text: context.translate(
-                    LangKeys.createAccount,
+                    LangKeys.youHaveAccount,
                   ),
                   theme: context.textStyle.copyWith(
                     fontSize: 18.sp,
