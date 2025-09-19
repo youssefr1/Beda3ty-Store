@@ -79,6 +79,6 @@ class SignUpBody extends StatelessWidget {
             ),
           ],
         ),
-      ),
+  ));
   }
 }

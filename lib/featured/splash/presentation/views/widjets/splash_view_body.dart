@@ -1,4 +1,3 @@
-import 'package:astro/astro_store_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/featured/splash/presentation/views/widjets/Sliding_image.dart';

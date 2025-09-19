@@ -82,7 +82,7 @@ class _LoginTextFormState extends State<LoginTextForm> {
                   // لما الباسورد ظاهر
                   color: isShowPassword
                       ? context.color.textColor
-                      : ColorsDark.blueLight, // هنا اللون
+                      : context.color.textColor, // هنا اللون
                 ),
               ),
               keyboardType: TextInputType.visiblePassword,
