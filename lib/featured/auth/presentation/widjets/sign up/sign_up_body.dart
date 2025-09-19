@@ -80,6 +80,5 @@ class SignUpBody extends StatelessWidget {
           ],
         ),
       ),
-    );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:astro/sooqly_store_app.dart';
+import 'package:astro/astro_store_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/featured/splash/presentation/views/widjets/Sliding_image.dart';
@@ -21,7 +21,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void initState() {
-    super.initState();
     initSlidingAnimation();
     navigateToHome();
   }
@@ -41,13 +40,13 @@ class _SplashViewBodyState extends State<SplashViewBody>
         SlidingImage(
           slidingAnimationImage: slidingAnimationImage,
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
       ],
     );
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 5), () {
       if (mounted) {
         context.goRoute(AppRouter.login); // ✅ يروح لـ screen1 ويمسح السبلاش من الـ stack
       }
@@ -56,35 +55,30 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
 
 
+
   void initSlidingAnimation() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2850), // أو أي مدة تناسبك
+      duration: const Duration(milliseconds: 4000),
     );
-
-    final curvedAnimation = CurvedAnimation(
-      parent: animationController,
-      curve: Curves.easeInOut,
-    );
+    animationController.forward();
+    super.initState();
 
     slidingAnimationText = Tween<Offset>(
       begin: const Offset(0, 18),
       end: Offset.zero,
-    ).animate(curvedAnimation);
+    ).animate(animationController);
 
     slidingAnimationImage = Tween<Offset>(
       begin: const Offset(0, -14),
       end: Offset.zero,
-    ).animate(curvedAnimation);
+    ).animate(animationController);
 
-    // ✅ لما الأنيميشن يخلص → نروح للصفحة اللي بعدها
-    animationController.forward().whenComplete(() {
-      if (mounted) {
-        Future.delayed(const Duration(seconds: 1), () {
-          context.goRoute(AppRouter.login);
-        });
-      }
+    slidingAnimationText.addListener(() {
+      setState(() {});
+    });
+    slidingAnimationImage.addListener(() {
+      setState(() {});
     });
   }
-
 }
