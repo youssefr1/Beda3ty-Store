@@ -50,6 +50,10 @@ dependencies:
   freezed_annotation: ^2.4.1
   freezed: ^2.4.6
   get_it: ^8.2.0
+  dio: ^5.9.0
+  pretty_dio_logger: ^1.4.0
+  retrofit: ^4.7.2
+  retrofit_generator: ^9.7.0
 
   # flutter pub run build_runner build --delete-conflicting-outputs
 
@@ -68,6 +72,7 @@ dev_dependencies:
   very_good_analysis: ^9.0.0
   flutter_launcher_icons: ^0.14.4
   build_runner: ^2.4.8
+  json_serializable: ^6.9.5
 
 
 flutter_launcher_icons:
