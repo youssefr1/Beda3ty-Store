@@ -1,0 +1,1 @@
+const String errmessage = 'Something went wrong';
