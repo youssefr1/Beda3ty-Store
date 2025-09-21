@@ -1,4 +1,5 @@
 import 'package:astro/core/app/app_cubit/app_cubit.dart';
+import 'package:astro/core/app/connectivily_control.dart';
 import 'package:astro/core/common/screens/no_network_screen.dart';
 import 'package:astro/core/di/injection_container.dart';
 import 'package:astro/core/language/app_localizations_setup.dart';
@@ -7,10 +8,9 @@ import 'package:astro/core/services/shared_pref/pref_keys.dart';
 import 'package:astro/core/services/shared_pref/shared_pref.dart';
 import 'package:astro/core/styles/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:astro/core/app/connectivily_control.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class SooqlyStoreApp extends StatelessWidget {
   const SooqlyStoreApp({super.key});
@@ -56,7 +56,7 @@ class SooqlyStoreApp extends StatelessWidget {
                         .localeResolutionCallback,
                     debugShowCheckedModeBanner: false,
                     // route section
-                    routerConfig: AppRouter.router,
+                    routerConfig:_buildRouter(),
                     builder: (context, child) {
                       if (!isConnected) {
                         return const NoNetworkScreen();
@@ -71,5 +71,16 @@ class SooqlyStoreApp extends StatelessWidget {
         );
       },
     );
+  }
+}
+GoRouter _buildRouter() {
+  final token = SharedPref().getString(PrefKeys.accessToken);
+
+  if (token != null && token.isNotEmpty) {
+    // لو فيه توكن → يفتح مباشرة على الـ HomeCustomer (أو أي Home تحدده)
+    return AppRouter.router(initialLocation: AppRouter.homeCustomer);
+  } else {
+    // لو مفيش توكن → يفتح على صفحة Login
+    return AppRouter.router(initialLocation: AppRouter.login);
   }
 }

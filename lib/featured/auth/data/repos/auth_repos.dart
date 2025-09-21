@@ -1,3 +1,4 @@
+import 'package:astro/core/language/lang_keys.dart';
 import 'package:astro/core/services/graphql/api_result.dart';
 import 'package:astro/core/utils/app_constant.dart';
 import 'package:astro/featured/auth/data/data_source/auth_data_source.dart';
@@ -19,7 +20,7 @@ class AuthRepos {
       final response = await _authDataSource.Login(body: body);
       return ApiResult.success(response);
     } catch (e) {
-      return const ApiResult.failure(errmessage);
+      return const ApiResult.failure(LangKeys.loggedError);
     }
   }
 

@@ -17,6 +17,7 @@ class LoginBodyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20,
@@ -47,7 +48,7 @@ class LoginBodyView extends StatelessWidget {
             SizedBox(
               height: 30.h,
             ),
-            const LoginButton(),
+             LoginButton(),
             SizedBox(
               height: 30.h,
             ),

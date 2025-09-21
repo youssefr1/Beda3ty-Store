@@ -13,18 +13,18 @@ class AuthQuaries {
   Map<String, dynamic> loginMapQuaries({required LoginRequset body}) {
     return {
       'query': r'''
-            mutation login($email: String!, $password: String!) {
-	             login(email: "$email.com", password: $password) {
-		            access_token
-		              refresh_token
-	}
-}
-
-      ''',
-      'variables':{
-        'email':body.email,
-        'password':body.password
+      mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password) {
+          access_token
+          refresh_token
+        }
+      }
+    ''',
+      'variables': {
+        'email': body.email,
+        'password': body.password,
       }
     };
   }
+
 }

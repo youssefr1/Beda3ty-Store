@@ -1,20 +1,25 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'login_response.g.dart';
+
 @JsonSerializable()
 class LoginResponse {
-  LoginResponse(this.dataModel);
+  LoginResponse(this.data);
+
   factory LoginResponse.fromJson(Map<String, dynamic> json) =>
       _$LoginResponseFromJson(json);
-  LoginDataModel dataModel;
+
+  @JsonKey(name: 'data')   // <<<<< مهم جداً
+  final LoginDataModel data;
 }
 
 @JsonSerializable()
 class LoginDataModel {
+  LoginDataModel(this.login);
 
-  LoginDataModel( this.loginModel);
   factory LoginDataModel.fromJson(Map<String, dynamic> json) =>
       _$LoginDataModelFromJson(json);
-  LoginModel loginModel;
+
+  final LoginModel login;  // <<<<< key اسمه login مش loginModel
 }
 
 @JsonSerializable()
@@ -26,6 +31,7 @@ class LoginModel {
 
   @JsonKey(name: 'access_token')
   final String? accessToken;
+
   @JsonKey(name: 'refresh_token')
   final String? refreshToken;
 }

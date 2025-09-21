@@ -6,8 +6,10 @@ import 'package:astro/core/styles/colors/colors_dark.dart';
 import 'package:astro/core/styles/fonts/font_weight_helper.dart';
 import 'package:astro/core/styles/theme/color_extension.dart';
 import 'package:astro/core/utils/app_regex.dart';
+import 'package:astro/featured/auth/presentation/view_models/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginTextForm extends StatefulWidget {
@@ -21,7 +23,12 @@ class LoginTextForm extends StatefulWidget {
 class _LoginTextFormState extends State<LoginTextForm> {
   @override
   bool isShowPassword = true;
-
+  late AuthBloc _bloc ;
+@override
+  void initState() {
+_bloc = context.read<AuthBloc>();
+super.initState();
+  }
   // controllers ثابتة
   final TextEditingController emailController =
       TextEditingController();
@@ -36,8 +43,10 @@ class _LoginTextFormState extends State<LoginTextForm> {
     super.dispose();
   }
 
+
   Widget build(BuildContext context) {
     return Form(
+      key: _bloc.formKey,
       child: Column(
         children: [
           //email
@@ -50,16 +59,16 @@ class _LoginTextFormState extends State<LoginTextForm> {
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.medium,
               ),
-              controller: emailController,
+              controller: _bloc.email,
               validator: (value) {
-                if (AppRegex.isEmailValid('value')) {
-                  return context.translate(
-                    LangKeys.validEmail,
-                  );
-                } else {
-                  return null;
+                if (value == null || value.isEmpty) {
+                  return "Email is required";
+                } else if (!AppRegex.isEmailValid(value)) {
+                  return "Please enter a valid email";
                 }
-              },
+                return null; // صح
+              }
+              ,
             ),
           ),
           SizedBox(
@@ -93,7 +102,7 @@ class _LoginTextFormState extends State<LoginTextForm> {
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.medium,
               ),
-              controller: passwordController,
+              controller: _bloc.password,
               validator: (value) {
                 if (value == null ||
                     value.isEmpty ||
