@@ -50,6 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
        final user= await _repos.userRole(userToken);
        //get user id and save it in shared pref
        await SharedPref().setInt(PrefKeys.userId, user.id ?? 0);
+       await SharedPref().setString(PrefKeys.userRole, user.userRole ?? '');
 
         emit( AuthState.success(userRole: user.userRole ?? ''));
         debugPrint(result.toString());
