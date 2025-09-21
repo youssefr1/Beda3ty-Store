@@ -9,7 +9,7 @@ class UserRoleResponse{
 @JsonKey(name:'role' )
   final String? userRole;
 @JsonKey(name:'id' )
-  final String? id;
+  final int? id;
 
 
 }
