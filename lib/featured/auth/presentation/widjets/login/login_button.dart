@@ -29,9 +29,9 @@ class LoginButton extends StatelessWidget {
               ),
             );
             if (userRole == 'admin') {
-              context.goRoute(AppRouter.homeAdmin);
+              context.pushRoute(AppRouter.homeAdmin);
             } else {
-              context.goRoute(AppRouter.homeCustomer);
+              context.pushRoute(AppRouter.homeCustomer);
             }
           },
           failure: (message) {
