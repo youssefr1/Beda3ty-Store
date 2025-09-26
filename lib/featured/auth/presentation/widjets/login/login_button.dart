@@ -23,7 +23,7 @@ class LoginButton extends StatelessWidget {
         state.whenOrNull(
           success: (userRole) {
             ShowToast.showToastSuccessTop(
-              context: context,
+
               message: context.translate(
                 LangKeys.loggedSuccessfully,
               ),
@@ -36,7 +36,7 @@ class LoginButton extends StatelessWidget {
           },
           failure: (message) {
             ShowToast.showToastErrorTop(
-              context: context,
+
               message: context.translate(message),
             );
           },

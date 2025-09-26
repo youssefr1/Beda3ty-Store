@@ -21,6 +21,7 @@ class AppRouter {
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
+    navigatorKey: sl<GlobalKey<NavigatorState>>(),
     routes: [
       GoRoute(
         path: splash,

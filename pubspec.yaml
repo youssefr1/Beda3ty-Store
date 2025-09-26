@@ -55,6 +55,8 @@ dependencies:
   retrofit: ^4.7.2
   retrofit_generator: ^9.7.0
   fluttertoast: ^9.0.0
+  image_picker: ^1.2.0
+  permission_handler: ^12.0.1
 
   # flutter pub run build_runner build --delete-conflicting-outputs
 

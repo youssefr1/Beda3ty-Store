@@ -16,7 +16,6 @@ class AuthRepos {
     required LoginRequset body,
   }) async {
     try {
-      
       final response = await _authDataSource.Login(body: body);
       return ApiResult.success(response);
     } catch (e) {

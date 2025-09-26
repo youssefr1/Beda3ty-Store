@@ -28,10 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     password.dispose();
   }
 
-  FutureOr<void> _Login(
-    LoginEvent event,
-    Emitter<AuthState> emit,
-  ) async {
+  FutureOr<void> _Login(LoginEvent event, Emitter<AuthState> emit,) async {
     emit(const AuthState.loading());
     final result = await _repos.login(
       body: LoginRequset(

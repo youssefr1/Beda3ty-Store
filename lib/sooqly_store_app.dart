@@ -42,6 +42,7 @@ class SooqlyStoreApp extends StatelessWidget {
                 builder: (context, state) {
                   final cubit = context.read<AppCubit>();
                   return MaterialApp.router(
+
                     // theme section
                     theme: cubit.isDark ? themeLight(): themeDark(),
                     // language section
