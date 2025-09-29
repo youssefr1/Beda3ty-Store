@@ -1,3 +1,4 @@
+import 'package:astro/core/app/upload_image/model/upload_image_response.dart';
 import 'package:astro/featured/auth/data/models/login_response.dart';
 import 'package:astro/featured/auth/data/models/user_role_response.dart';
 import 'package:dio/dio.dart';
@@ -13,8 +14,12 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 @POST(graphql)
 Future<LoginResponse> login(@Body() Map<String,dynamic> mutation,);
-  @GET('/api/v1/auth/profile')
-  Future<UserRoleResponse> userProfile();
+@GET('/api/v1/auth/profile')
+Future<UserRoleResponse> userProfile();
+
+@POST('/api/v1/files/upload')
+Future<UploadImageResponse> uploadImage(@Body() FormData file);
+
 
 
 

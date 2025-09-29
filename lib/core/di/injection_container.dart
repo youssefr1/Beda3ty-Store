@@ -1,6 +1,9 @@
 
 
 import 'package:astro/core/app/app_cubit/app_cubit.dart';
+import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
+import 'package:astro/core/app/upload_image/data_source/upload_image_dataSource.dart';
+import 'package:astro/core/app/upload_image/repo/upload_image_repo.dart';
 import 'package:astro/core/services/graphql/api_service.dart';
 import 'package:astro/core/services/graphql/dio_factory.dart';
 import 'package:astro/featured/auth/data/data_source/auth_data_source.dart';
@@ -21,12 +24,16 @@ Future<void> setupInjection() async {
   final navigatorKey = GlobalKey<NavigatorState>();
    sl..registerFactory(AppCubit.new)
      ..registerLazySingleton(()=>ApiService(dio))
-     ..registerSingleton<GlobalKey<NavigatorState>>(navigatorKey);
+     ..registerSingleton<GlobalKey<NavigatorState>>(navigatorKey)
+     ..registerFactory(()=>UploadImageCubit(sl()))
+     ..registerLazySingleton(()=>UploadImageRepo(sl()))
+     ..registerLazySingleton(()=>UploadImageDataSource(sl()))
+  ;
 
 }
 Future<void> _initAuth() async{
   sl..registerFactory(() => AuthBloc(sl()))
-  ..registerLazySingleton(()=>AuthRepos(sl()))
-   ..registerLazySingleton(()=>AuthDataSource(sl()));
+    ..registerLazySingleton(()=>AuthRepos(sl()))
+    ..registerLazySingleton(()=>AuthDataSource(sl()));
 
 }

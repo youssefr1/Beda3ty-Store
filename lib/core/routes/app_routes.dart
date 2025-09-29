@@ -1,3 +1,4 @@
+import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:astro/core/common/screens/no_network_screen.dart';
 import 'package:astro/core/di/injection_container.dart';
 import 'package:astro/featured/admin/home_admin.dart';
@@ -9,7 +10,6 @@ import 'package:astro/featured/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 
 class AppRouter {
   static const String splash = '/splash';
@@ -26,7 +26,8 @@ class AppRouter {
       GoRoute(
         path: splash,
         builder: (context, state) => const SplashView(),
-      ), GoRoute(
+      ),
+      GoRoute(
         path: homeCustomer,
         builder: (context, state) => const HomeCustomer(),
       ),
@@ -36,7 +37,13 @@ class AppRouter {
       ),
       GoRoute(
         path: signUp,
-        builder: (context, state) => const SignUpView(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => sl<UploadImageCubit>(),),
+
+          ],
+          child: const SignUpView(),
+        ),
       ),
       GoRoute(
         path: noNetwork,

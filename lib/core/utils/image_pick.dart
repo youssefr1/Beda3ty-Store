@@ -8,7 +8,7 @@ class PickImageUtils {
 
   const PickImageUtils._();
 
-  static final PickImageUtils _instance = PickImageUtils._();
+  static const PickImageUtils _instance = PickImageUtils._();
 
   Future<XFile?> pickImage() async {
     try {
