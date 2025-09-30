@@ -15,7 +15,7 @@ class UploadImageCubit extends Cubit<UploadImageState> {
     : super(const UploadImageState.initial());
   final UploadImageRepo _repo;
 
-  String _getImageUrl = '';
+  String getImageUrl = '';
 
   // upload image
   Future<void> uploadImage() async {
@@ -25,7 +25,7 @@ class UploadImageCubit extends Cubit<UploadImageState> {
     final result = await _repo.uploadImage(pickImage);
     result.when(
       success: (image) {
-        _getImageUrl = image.location ?? '';
+        getImageUrl = image.location ?? '';
         emit(UploadImageState.success());
       },
       failure: (error) {
@@ -37,7 +37,7 @@ class UploadImageCubit extends Cubit<UploadImageState> {
   // remove image
 
  void removeImage(){
-    _getImageUrl = '';
-    emit(UploadImageState.removeImage(imageUrl: _getImageUrl));
+    getImageUrl = '';
+    emit(UploadImageState.removeImage(imageUrl: getImageUrl));
  }
 }
