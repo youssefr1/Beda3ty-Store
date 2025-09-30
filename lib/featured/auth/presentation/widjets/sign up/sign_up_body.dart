@@ -27,7 +27,7 @@ class SignUpBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            //dark mode and language
+            //dark mode and dlanguage
             const DarkAndLangBar(),
             SizedBox(
               height: 30.h,
