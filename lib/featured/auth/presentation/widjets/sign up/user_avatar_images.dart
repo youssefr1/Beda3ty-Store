@@ -1,6 +1,8 @@
 import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:astro/core/common/animation/animate_do.dart';
+import 'package:astro/core/common/widjets/show_toast.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
+import 'package:astro/core/language/lang_keys.dart';
 import 'package:astro/core/styles/images/app_images.dart';
 import 'package:astro/core/utils/image_pick.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +16,24 @@ class UserAvatarImages extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomFadeInUp(
       duration: 500,
-      child: BlocConsumer<UploadImageCubit, UploadImageState>(
-        listener: (context, state) {},
+      child:
+          BlocConsumer<UploadImageCubit, UploadImageState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                success: () {
+                  ShowToast.showToastSuccessTop(
+                    message: context.translate(
+                      LangKeys.imageUploaded,
+                    ),
+                  );
+                },
+              removeImage: (removeImage){
+                  ShowToast.showToastSuccessTop(message: context.translate(LangKeys.imageRemoved));
+              },
+              failure: (errorMessage){
+               ShowToast.showToastErrorTop(message: errorMessage);
+              });
+            },
             builder: (context, state) {
               final isImageUploaded = context
                   .read<UploadImageCubit>()
@@ -34,11 +52,11 @@ class UserAvatarImages extends StatelessWidget {
                                     .getImageUrl,
                               )
                               as ImageProvider
-                        : AssetImage(
+                        : const AssetImage(
                             AppImages.userAvatar,
                           ),
-                    backgroundColor: Colors.black
-                        .withOpacity(0.2),
+                    backgroundColor: Colors.grey
+                        .withOpacity(0.1),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
@@ -47,22 +65,44 @@ class UserAvatarImages extends StatelessWidget {
                           width: 100.w,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.black.withOpacity(
-                              0.4,
+                            color: isImageUploaded
+                                ? Colors.transparent
+                                : Colors.black.withOpacity(
+                                    0.4,
+                                  ),
+                          ),
+                        ),
+
+                        Positioned(
+                          top: -15,
+                          right: -15,
+                          child: IconButton(
+                            onPressed: () {
+                              context
+                                  .read<UploadImageCubit>()
+                                  .removeImage();
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
                             ),
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            context
-                                .read<UploadImageCubit>()
-                                .uploadImage();
-                          },
-                          icon: Icon(
-                            Icons.add_a_photo,
-                            color: context.color.textColor,
+                        if (isImageUploaded)
+                          const SizedBox.shrink()
+                        else
+                          IconButton(
+                            onPressed: () {
+                              context
+                                  .read<UploadImageCubit>()
+                                  .uploadImage();
+                            },
+                            icon: Icon(
+                              Icons.add_a_photo,
+                              color:
+                                  context.color.textColor,
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   );
@@ -70,7 +110,7 @@ class UserAvatarImages extends StatelessWidget {
                 loading: () {
                   return CircleAvatar(
                     radius: 38,
-                    backgroundImage:const AssetImage(
+                    backgroundImage: const AssetImage(
                       AppImages.userAvatar,
                     ),
                     child: CircularProgressIndicator(
