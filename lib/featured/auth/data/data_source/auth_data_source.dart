@@ -1,8 +1,10 @@
 import 'package:astro/core/services/graphql/api_service.dart';
 import 'package:astro/core/services/graphql/graphql_quaries/auth/auth_quary.dart';
-import 'package:astro/featured/auth/data/models/login_requset.dart';
-import 'package:astro/featured/auth/data/models/login_response.dart';
-import 'package:astro/featured/auth/data/models/user_role_response.dart';
+import 'package:astro/featured/auth/data/models/login/login_requset.dart';
+import 'package:astro/featured/auth/data/models/login/login_response.dart';
+import 'package:astro/featured/auth/data/models/login/user_role_response.dart';
+import 'package:astro/featured/auth/data/models/signUp/sign_up_request.dart';
+import 'package:astro/featured/auth/data/models/signUp/sign_up_response.dart';
 import 'package:dio/dio.dart';
 
 class AuthDataSource{
@@ -20,6 +22,12 @@ return response;
     final client = ApiService(dio);
     final response = await client.userProfile();
     print('user role => ${response.userRole}');
+    return response;
+  }
+
+
+  Future<SignUpResponse> signUp({required SignUpRequest body})async{
+    final response = await _graph.signUp(AuthQuaries().signUpMapQuaries(body: body));
     return response;
   }
 }

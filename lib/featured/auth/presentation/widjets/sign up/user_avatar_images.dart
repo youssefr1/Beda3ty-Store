@@ -4,6 +4,7 @@ import 'package:astro/core/common/widjets/show_toast.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/language/lang_keys.dart';
 import 'package:astro/core/styles/images/app_images.dart';
+import 'package:astro/core/utils/app_constant.dart';
 import 'package:astro/core/utils/image_pick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +32,7 @@ class UserAvatarImages extends StatelessWidget {
                   ShowToast.showToastSuccessTop(message: context.translate(LangKeys.imageRemoved));
               },
               failure: (errorMessage){
-               ShowToast.showToastErrorTop(message: errorMessage);
+               ShowToast.showToastErrorTop(message: errmessage);
               });
             },
             builder: (context, state) {

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:astro/core/services/shared_pref/pref_keys.dart';
 import 'package:astro/core/services/shared_pref/shared_pref.dart';
-import 'package:astro/featured/auth/data/models/login_requset.dart';
+import 'package:astro/featured/auth/data/models/login/login_requset.dart';
 import 'package:astro/featured/auth/data/repos/auth_repos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -40,7 +40,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await result.when(
       success: (LoginData) async {
         // user Token
-        final userToken = LoginData.data.login.accessToken ?? '';
+        final userToken = LoginData?.data.login.accessToken ?? '';
         // save token in sharedPref
         await SharedPref().setString(PrefKeys.accessToken, userToken,);
         // get user role

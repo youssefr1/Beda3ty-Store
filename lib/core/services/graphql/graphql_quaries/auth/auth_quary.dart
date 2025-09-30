@@ -1,4 +1,5 @@
-import 'package:astro/featured/auth/data/models/login_requset.dart';
+import 'package:astro/featured/auth/data/models/login/login_requset.dart';
+import 'package:astro/featured/auth/data/models/signUp/sign_up_request.dart';
 
 class AuthQuaries {
   // 3. factory بيرجع نفس النسخة
@@ -23,6 +24,33 @@ class AuthQuaries {
       'variables': {
         'email': body.email,
         'password': body.password,
+      }
+    };
+  }
+
+  Map<String, dynamic> signUpMapQuaries({required SignUpRequest body}) {
+    return {
+      'query': r'''
+          mutation SignUp($name: String!, $email: String!, $password: String!, $avatar: String!) {
+          addUser(
+            data: {
+              name:$name
+              email: $email
+              password: $password
+              avatar: $avatar
+              role: customer
+            }
+          ) {
+            id
+            email
+          }
+        }
+    ''',
+      'variables': {
+        'name': body.name,
+        'email': body.email,
+        'password': body.password,
+        'avatar':body.avatar
       }
     };
   }
