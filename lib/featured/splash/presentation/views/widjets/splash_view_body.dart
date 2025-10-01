@@ -53,11 +53,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
       final role = SharedPref().getString(PrefKeys.userRole) ?? '';
 
       if (token.isNotEmpty) {
-        if (role == 'admin') {
-          context.go(AppRouter.homeAdmin);
-        } else {
-          context.go(AppRouter.homeCustomer);
-        }
+        context.go(AppRouter.homeAdmin);
+        // if (role == 'admin') {
+        //   context.go(AppRouter.homeAdmin);
+        // } else {
+        //   context.go(AppRouter.homeCustomer);
+        // }
       } else {
         context.go(AppRouter.login);
       }

@@ -1,7 +1,7 @@
 import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:astro/core/common/screens/no_network_screen.dart';
 import 'package:astro/core/di/injection_container.dart';
-import 'package:astro/featured/admin/home_admin.dart';
+import 'package:astro/featured/admin/home_admin/presentation/veiws/home_admin_view.dart';
 import 'package:astro/featured/auth/presentation/view_models/auth_bloc.dart';
 import 'package:astro/featured/auth/presentation/views/login_view.dart';
 import 'package:astro/featured/auth/presentation/views/sign_up_view.dart';
