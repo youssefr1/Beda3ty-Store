@@ -5,7 +5,6 @@ import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/language/lang_keys.dart';
 import 'package:astro/core/styles/images/app_images.dart';
 import 'package:astro/core/utils/app_constant.dart';
-import 'package:astro/core/utils/image_pick.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -98,10 +97,10 @@ class UserAvatarImages extends StatelessWidget {
                                   .read<UploadImageCubit>()
                                   .uploadImage();
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.add_a_photo,
                               color:
-                                  context.color.textColor,
+                                  Colors.white,
                             ),
                           ),
                       ],

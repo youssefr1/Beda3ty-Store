@@ -1,5 +1,6 @@
-import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/routes/app_routes.dart';
+import 'package:astro/core/services/shared_pref/pref_keys.dart';
+import 'package:astro/core/services/shared_pref/shared_pref.dart';
 import 'package:astro/featured/splash/presentation/views/widjets/Sliding_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,8 +9,7 @@ class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
 
   @override
-  State<SplashViewBody> createState() =>
-      _SplashViewBodyState();
+  State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
 class _SplashViewBodyState extends State<SplashViewBody>
@@ -20,6 +20,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   @override
   void initState() {
+    super.initState();
     initSlidingAnimation();
     navigateToHome();
   }
@@ -46,14 +47,22 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToHome() {
     Future.delayed(const Duration(seconds: 5), () {
-      if (mounted) {
-        context.goRoute(AppRouter.login); // ✅ يروح لـ screen1 ويمسح السبلاش من الـ stack
+      if (!mounted) return;
+
+      final token = SharedPref().getString(PrefKeys.accessToken) ?? '';
+      final role = SharedPref().getString(PrefKeys.userRole) ?? '';
+
+      if (token.isNotEmpty) {
+        if (role == 'admin') {
+          context.go(AppRouter.homeAdmin);
+        } else {
+          context.go(AppRouter.homeCustomer);
+        }
+      } else {
+        context.go(AppRouter.login);
       }
     });
   }
-
-
-
 
   void initSlidingAnimation() {
     animationController = AnimationController(
@@ -61,7 +70,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
       duration: const Duration(milliseconds: 4000),
     );
     animationController.forward();
-    super.initState();
 
     slidingAnimationText = Tween<Offset>(
       begin: const Offset(0, 18),

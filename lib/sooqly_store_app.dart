@@ -74,19 +74,5 @@ class SooqlyStoreApp extends StatelessWidget {
     );
   }
 }
-// GoRouter _buildRouter() {
-//   final token = SharedPref().getString(PrefKeys.accessToken);
-//   final role = SharedPref().getString(PrefKeys.userRole);
-//
-//   if (token != null && token.isNotEmpty) {
-//     // لو عايز توجه حسب الدور
-//     if (role == 'admin') {
-//       return AppRouter.router(initialLocation: AppRouter.homeAdmin);
-//     } else {
-//       return AppRouter.router(initialLocation: AppRouter.homeCustomer);
-//     }
-//   } else {
-//     return AppRouter.router(initialLocation: AppRouter.login);
-//   }
-// }
-//
+
+

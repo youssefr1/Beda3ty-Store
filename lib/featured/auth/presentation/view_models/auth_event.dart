@@ -5,6 +5,7 @@ part of 'auth_bloc.dart';
   const factory AuthEvent.started() = _StartedEvent;
   const factory AuthEvent.login() = LoginEvent;
   const factory AuthEvent.signUp({required String imageUrl}) = SignUpEvent;
+  const factory AuthEvent.cancelLoading() = CancelLoadingEvent;
 
 
 }

@@ -2,10 +2,17 @@ import 'package:astro/core/styles/colors/colors_dark.dart';
 import 'package:astro/featured/splash/presentation/views/widjets/splash_view_body.dart';
 import 'package:flutter/material.dart';
 
-class SplashView extends StatelessWidget {
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
   @override
+  State<SplashView> createState() => _SplashViewState();
+
+}
+
+class _SplashViewState extends State<SplashView> {
+  @override
+
   Widget build(BuildContext context) {
     return const Scaffold(
         backgroundColor: Color(0xff242C3B),

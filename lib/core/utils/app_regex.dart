@@ -5,8 +5,8 @@ class AppRegex {
   }
 
   static bool isPasswordValid(String password) {
-    return RegExp(
-      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$',
-    ).hasMatch(password);
+    // يسمح فقط بحروف وأرقام، على الأقل 6 خانات
+    final regex = RegExp(r'^[a-zA-Z0-9]{6,}$');
+    return regex.hasMatch(password);
   }
 }

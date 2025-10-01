@@ -28,9 +28,8 @@ class LoginBodyView extends StatelessWidget {
           children: [
             //dark mode and language
             const DarkAndLangBar(),
-            SizedBox(
-              height: 50.h,
-            ),
+            // logo
+            Image.asset('assets/assets/images/core/logo.png',width: 190.w,),
             // Welcome Info
             AuthTitleInfo(
               title: context.translate(LangKeys.login),

@@ -18,7 +18,6 @@ class AppRouter {
   static const String noNetwork = '/no-network';
   static const String homeAdmin = '/home-admin';
   static const String homeCustomer = '/home-customer';
-
   static final GoRouter router = GoRouter(
     initialLocation: splash,
     navigatorKey: sl<GlobalKey<NavigatorState>>(),
@@ -39,8 +38,12 @@ class AppRouter {
         path: signUp,
         builder: (context, state) => MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => sl<UploadImageCubit>(),),
-
+            BlocProvider(
+              create: (context) => sl<UploadImageCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => sl<AuthBloc>(),
+            ),
           ],
           child: const SignUpView(),
         ),

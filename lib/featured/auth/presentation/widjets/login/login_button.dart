@@ -23,21 +23,19 @@ class LoginButton extends StatelessWidget {
         state.whenOrNull(
           success: (userRole) {
             ShowToast.showToastSuccessTop(
-
               message: context.translate(
                 LangKeys.loggedSuccessfully,
               ),
             );
             if (userRole == 'admin') {
-              context.pushRoute(AppRouter.homeAdmin);
+              context.goRoute(AppRouter.homeAdmin);
             } else {
-              context.pushRoute(AppRouter.homeCustomer);
+              context.goRoute(AppRouter.homeCustomer);
             }
           },
           failure: (message) {
             ShowToast.showToastErrorTop(
-
-              message: context.translate(message),
+              message:message,
             );
           },
         );
@@ -45,6 +43,15 @@ class LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.maybeWhen(
           loading: () {
+            // بعد 10 ثواني نتاكد لو لسه Loading -> نعرض Error
+            Future.delayed(const Duration(seconds: 10), () {
+              final bloc = context.read<AuthBloc>();
+              if (bloc.state is LoadingState) {
+                bloc.add(const AuthEvent.cancelLoading()); // ✅ ده هيحوّل الحالة لـ failure
+              }
+            });
+
+
             return CustomFadeInDown(
               duration: 500,
               child: CustomLinearButton(
@@ -62,10 +69,9 @@ class LoginButton extends StatelessWidget {
               child: CustomLinearButton(
                 width: MediaQuery.of(context).size.width,
                 onPressed: () {
-                  if (context.read<AuthBloc>().formKey.currentState!.validate())
-                  {
+                  if (context.read<AuthBloc>().formKey.currentState!.validate()) {
                     context.read<AuthBloc>().add(
-                      AuthEvent.login(),
+                      const AuthEvent.login(),
                     );
                   }
                 },
@@ -74,6 +80,7 @@ class LoginButton extends StatelessWidget {
                   theme: context.textStyle.copyWith(
                     fontSize: 22.sp,
                     fontWeight: FontWeightHelper.medium,
+                    color: Colors.white,
                   ),
                 ),
               ),

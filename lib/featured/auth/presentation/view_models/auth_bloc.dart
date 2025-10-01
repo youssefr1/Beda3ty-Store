@@ -19,6 +19,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._repos) : super(const _Initial()) {
     on<LoginEvent>(_Login);
     on<SignUpEvent>(_signUp);
+
+    on<CancelLoadingEvent>((event, emit) {
+      emit(const AuthState.failure( errmessage: 'Error in login please make sure you have email ',));
+    });
+
   }
 
   final formKey = GlobalKey<FormState>();
@@ -67,6 +72,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
   }
+
 
   FutureOr<void> _signUp(SignUpEvent event,
       Emitter<AuthState> emit) async {

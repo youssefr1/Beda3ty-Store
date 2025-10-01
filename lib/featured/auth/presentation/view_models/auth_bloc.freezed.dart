@@ -22,18 +22,21 @@ mixin _$AuthEvent {
     required TResult Function() started,
     required TResult Function() login,
     required TResult Function(String imageUrl) signUp,
+    required TResult Function() cancelLoading,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? login,
     TResult? Function(String imageUrl)? signUp,
+    TResult? Function()? cancelLoading,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? login,
     TResult Function(String imageUrl)? signUp,
+    TResult Function()? cancelLoading,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,18 +44,21 @@ mixin _$AuthEvent {
     required TResult Function(_StartedEvent value) started,
     required TResult Function(LoginEvent value) login,
     required TResult Function(SignUpEvent value) signUp,
+    required TResult Function(CancelLoadingEvent value) cancelLoading,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_StartedEvent value)? started,
     TResult? Function(LoginEvent value)? login,
     TResult? Function(SignUpEvent value)? signUp,
+    TResult? Function(CancelLoadingEvent value)? cancelLoading,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StartedEvent value)? started,
     TResult Function(LoginEvent value)? login,
     TResult Function(SignUpEvent value)? signUp,
+    TResult Function(CancelLoadingEvent value)? cancelLoading,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
 }
@@ -123,6 +129,7 @@ class _$StartedEventImpl implements _StartedEvent {
     required TResult Function() started,
     required TResult Function() login,
     required TResult Function(String imageUrl) signUp,
+    required TResult Function() cancelLoading,
   }) {
     return started();
   }
@@ -133,6 +140,7 @@ class _$StartedEventImpl implements _StartedEvent {
     TResult? Function()? started,
     TResult? Function()? login,
     TResult? Function(String imageUrl)? signUp,
+    TResult? Function()? cancelLoading,
   }) {
     return started?.call();
   }
@@ -143,6 +151,7 @@ class _$StartedEventImpl implements _StartedEvent {
     TResult Function()? started,
     TResult Function()? login,
     TResult Function(String imageUrl)? signUp,
+    TResult Function()? cancelLoading,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -157,6 +166,7 @@ class _$StartedEventImpl implements _StartedEvent {
     required TResult Function(_StartedEvent value) started,
     required TResult Function(LoginEvent value) login,
     required TResult Function(SignUpEvent value) signUp,
+    required TResult Function(CancelLoadingEvent value) cancelLoading,
   }) {
     return started(this);
   }
@@ -167,6 +177,7 @@ class _$StartedEventImpl implements _StartedEvent {
     TResult? Function(_StartedEvent value)? started,
     TResult? Function(LoginEvent value)? login,
     TResult? Function(SignUpEvent value)? signUp,
+    TResult? Function(CancelLoadingEvent value)? cancelLoading,
   }) {
     return started?.call(this);
   }
@@ -177,6 +188,7 @@ class _$StartedEventImpl implements _StartedEvent {
     TResult Function(_StartedEvent value)? started,
     TResult Function(LoginEvent value)? login,
     TResult Function(SignUpEvent value)? signUp,
+    TResult Function(CancelLoadingEvent value)? cancelLoading,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -236,6 +248,7 @@ class _$LoginEventImpl implements LoginEvent {
     required TResult Function() started,
     required TResult Function() login,
     required TResult Function(String imageUrl) signUp,
+    required TResult Function() cancelLoading,
   }) {
     return login();
   }
@@ -246,6 +259,7 @@ class _$LoginEventImpl implements LoginEvent {
     TResult? Function()? started,
     TResult? Function()? login,
     TResult? Function(String imageUrl)? signUp,
+    TResult? Function()? cancelLoading,
   }) {
     return login?.call();
   }
@@ -256,6 +270,7 @@ class _$LoginEventImpl implements LoginEvent {
     TResult Function()? started,
     TResult Function()? login,
     TResult Function(String imageUrl)? signUp,
+    TResult Function()? cancelLoading,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -270,6 +285,7 @@ class _$LoginEventImpl implements LoginEvent {
     required TResult Function(_StartedEvent value) started,
     required TResult Function(LoginEvent value) login,
     required TResult Function(SignUpEvent value) signUp,
+    required TResult Function(CancelLoadingEvent value) cancelLoading,
   }) {
     return login(this);
   }
@@ -280,6 +296,7 @@ class _$LoginEventImpl implements LoginEvent {
     TResult? Function(_StartedEvent value)? started,
     TResult? Function(LoginEvent value)? login,
     TResult? Function(SignUpEvent value)? signUp,
+    TResult? Function(CancelLoadingEvent value)? cancelLoading,
   }) {
     return login?.call(this);
   }
@@ -290,6 +307,7 @@ class _$LoginEventImpl implements LoginEvent {
     TResult Function(_StartedEvent value)? started,
     TResult Function(LoginEvent value)? login,
     TResult Function(SignUpEvent value)? signUp,
+    TResult Function(CancelLoadingEvent value)? cancelLoading,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -377,6 +395,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     required TResult Function() started,
     required TResult Function() login,
     required TResult Function(String imageUrl) signUp,
+    required TResult Function() cancelLoading,
   }) {
     return signUp(imageUrl);
   }
@@ -387,6 +406,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult? Function()? started,
     TResult? Function()? login,
     TResult? Function(String imageUrl)? signUp,
+    TResult? Function()? cancelLoading,
   }) {
     return signUp?.call(imageUrl);
   }
@@ -397,6 +417,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult Function()? started,
     TResult Function()? login,
     TResult Function(String imageUrl)? signUp,
+    TResult Function()? cancelLoading,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -411,6 +432,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     required TResult Function(_StartedEvent value) started,
     required TResult Function(LoginEvent value) login,
     required TResult Function(SignUpEvent value) signUp,
+    required TResult Function(CancelLoadingEvent value) cancelLoading,
   }) {
     return signUp(this);
   }
@@ -421,6 +443,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult? Function(_StartedEvent value)? started,
     TResult? Function(LoginEvent value)? login,
     TResult? Function(SignUpEvent value)? signUp,
+    TResult? Function(CancelLoadingEvent value)? cancelLoading,
   }) {
     return signUp?.call(this);
   }
@@ -431,6 +454,7 @@ class _$SignUpEventImpl implements SignUpEvent {
     TResult Function(_StartedEvent value)? started,
     TResult Function(LoginEvent value)? login,
     TResult Function(SignUpEvent value)? signUp,
+    TResult Function(CancelLoadingEvent value)? cancelLoading,
     required TResult orElse(),
   }) {
     if (signUp != null) {
@@ -451,6 +475,125 @@ abstract class SignUpEvent implements AuthEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SignUpEventImplCopyWith<_$SignUpEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CancelLoadingEventImplCopyWith<$Res> {
+  factory _$$CancelLoadingEventImplCopyWith(
+    _$CancelLoadingEventImpl value,
+    $Res Function(_$CancelLoadingEventImpl) then,
+  ) = __$$CancelLoadingEventImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CancelLoadingEventImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$CancelLoadingEventImpl>
+    implements _$$CancelLoadingEventImplCopyWith<$Res> {
+  __$$CancelLoadingEventImplCopyWithImpl(
+    _$CancelLoadingEventImpl _value,
+    $Res Function(_$CancelLoadingEventImpl) _then,
+  ) : super(_value, _then);
+
+  /// Create a copy of AuthEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$CancelLoadingEventImpl implements CancelLoadingEvent {
+  const _$CancelLoadingEventImpl();
+
+  @override
+  String toString() {
+    return 'AuthEvent.cancelLoading()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$CancelLoadingEventImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() login,
+    required TResult Function(String imageUrl) signUp,
+    required TResult Function() cancelLoading,
+  }) {
+    return cancelLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? login,
+    TResult? Function(String imageUrl)? signUp,
+    TResult? Function()? cancelLoading,
+  }) {
+    return cancelLoading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? login,
+    TResult Function(String imageUrl)? signUp,
+    TResult Function()? cancelLoading,
+    required TResult orElse(),
+  }) {
+    if (cancelLoading != null) {
+      return cancelLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartedEvent value) started,
+    required TResult Function(LoginEvent value) login,
+    required TResult Function(SignUpEvent value) signUp,
+    required TResult Function(CancelLoadingEvent value) cancelLoading,
+  }) {
+    return cancelLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_StartedEvent value)? started,
+    TResult? Function(LoginEvent value)? login,
+    TResult? Function(SignUpEvent value)? signUp,
+    TResult? Function(CancelLoadingEvent value)? cancelLoading,
+  }) {
+    return cancelLoading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartedEvent value)? started,
+    TResult Function(LoginEvent value)? login,
+    TResult Function(SignUpEvent value)? signUp,
+    TResult Function(CancelLoadingEvent value)? cancelLoading,
+    required TResult orElse(),
+  }) {
+    if (cancelLoading != null) {
+      return cancelLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CancelLoadingEvent implements AuthEvent {
+  const factory CancelLoadingEvent() = _$CancelLoadingEventImpl;
 }
 
 /// @nodoc

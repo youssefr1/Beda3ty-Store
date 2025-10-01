@@ -5,8 +5,10 @@ import 'package:astro/core/language/lang_keys.dart';
 import 'package:astro/core/styles/colors/colors_dark.dart';
 import 'package:astro/core/styles/fonts/font_weight_helper.dart';
 import 'package:astro/core/utils/app_regex.dart';
+import 'package:astro/featured/auth/presentation/view_models/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpTextForm extends StatefulWidget {
@@ -19,28 +21,26 @@ class SignUpTextForm extends StatefulWidget {
 
 class _SignUpTextFormState extends State<SignUpTextForm> {
   bool isShowPassword = true;
-
-  // controllers ثابتة
-  final TextEditingController emailController =
-      TextEditingController();
-  final TextEditingController nameController =
-      TextEditingController();
-
-  final TextEditingController passwordController =
-      TextEditingController();
-
+late AuthBloc _bloc;
   @override
   void dispose() {
     // مهم جدًا تنظفهم
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
+
+    _bloc.email.dispose();
+    _bloc.name.dispose();
+    _bloc.password.dispose();
     super.dispose();
+  }
+  initState() {
+    super.initState();
+    _bloc = context.read<AuthBloc>();
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _bloc.formKey,
       child: Column(
         children: [
           //email
@@ -48,9 +48,7 @@ class _SignUpTextFormState extends State<SignUpTextForm> {
             duration: 600,
             child: CustomTextField(
               validator: (value) {
-                if (value == null ||
-                    value.isEmpty ||
-                    value.length < 4) {
+                if (value == null || value.isEmpty || value.length < 4) {
                   return context.translate(
                     LangKeys.validName,
                   );
@@ -66,7 +64,7 @@ class _SignUpTextFormState extends State<SignUpTextForm> {
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.medium,
               ),
-              controller: nameController,
+              controller: _bloc.name,
             ),
           ),
           SizedBox(
@@ -75,13 +73,18 @@ class _SignUpTextFormState extends State<SignUpTextForm> {
           CustomFadeInRight(
             duration: 600,
             child: CustomTextField(
+              validator: (value){
+                if(!AppRegex.isEmailValid(_bloc.email.text)){
+                  return context.translate(LangKeys.validEmail);
+                }
+              },
               keyboardType: TextInputType.emailAddress,
               hintText: context.translate(LangKeys.email),
               hintStyle: context.textStyle.copyWith(
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.medium,
               ),
-              controller: emailController,
+              controller: _bloc.email,
             ),
           ),
           SizedBox(
@@ -116,18 +119,15 @@ class _SignUpTextFormState extends State<SignUpTextForm> {
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.medium,
               ),
-              controller: passwordController,
-              validator: (value) {
-                if (value == null ||
-                    value.isEmpty ||
-                    value.length < 8) {
-                  return context.translate(
-                    LangKeys.validPasswrod,
-                  );
-                } else {
-                  return null;
-                }
-              },
+              controller: _bloc.password,
+    validator: (value) {
+    if (!AppRegex.isPasswordValid(value ?? "")) {
+    return context.translate(LangKeys.validPasswrod);
+    }
+    return null;
+    },
+
+
             ),
           ),
         ],
