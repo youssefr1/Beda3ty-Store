@@ -1,4 +1,7 @@
 import 'package:astro/core/app/upload_image/model/upload_image_response.dart';
+import 'package:astro/featured/admin/dashboard/data/models/categorie_number_response.dart';
+import 'package:astro/featured/admin/dashboard/data/models/product_number_response.dart';
+import 'package:astro/featured/admin/dashboard/data/models/users_number_response.dart';
 import 'package:astro/featured/auth/data/models/login/login_response.dart';
 import 'package:astro/featured/auth/data/models/login/user_role_response.dart';
 import 'package:astro/featured/auth/data/models/signUp/sign_up_response.dart';
@@ -23,6 +26,13 @@ Future<UploadImageResponse> uploadImage(@Body() FormData file);
 
 @POST(graphql)
 Future<SignUpResponse> signUp (@Body() Map<String,dynamic> mutation);
+@POST(graphql)
+Future<ProductNumberResponse> productNumber (@Body() Map<String,dynamic> quary);
+@POST(graphql)
+Future<CategoriesNumberResponse> categoriesNumber (@Body() Map<String,dynamic> quary);
+@POST(graphql)
+Future<UsersNumberResponse> usersNumber (@Body() Map<String,dynamic> quary);
+
 
 
 }
