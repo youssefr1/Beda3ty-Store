@@ -22,6 +22,7 @@ class CategoriesNumberBloc
     getCategoryNumber event,
     Emitter<CategoriesNumberState> emit,
   ) async{
+    emit(const CategoriesNumberState.loading());
     final data = await repo.Categorynumber();
     data.when(success:
         (categorynum) {

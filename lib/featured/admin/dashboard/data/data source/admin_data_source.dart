@@ -11,17 +11,17 @@ class DashBoardDataSource {
 
   Future<ProductNumberResponse> productNumber() async {
     final response = await graph.productNumber(
-      DashboardQuery().numberOfProductsMapQuary(),
+      DashboardQuery().numberOfProductsMapQuery(),
     );
     return response;
   } Future<CategoriesNumberResponse>categoryNumber() async {
     final response = await graph.categoriesNumber(
-      DashboardQuery().numberOfCategoriesMapQuary(),
+      DashboardQuery().numberOfCategoriesMapQuery(),
     );
     return response;
   } Future<UsersNumberResponse> userNumber() async {
     final response = await graph.usersNumber(
-      DashboardQuery().numberOfUsersMapQuary(),
+      DashboardQuery().numberOfUsersMapQuery(),
     );
     return response;
   }

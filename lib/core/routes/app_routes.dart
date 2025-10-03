@@ -1,6 +1,10 @@
 import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:astro/core/common/screens/no_network_screen.dart';
 import 'package:astro/core/di/injection_container.dart';
+import 'package:astro/featured/admin/dashboard/presentation/veiws/dashboard_view.dart';
+import 'package:astro/featured/admin/dashboard/presentation/view%20model/category/categories_number_bloc.dart';
+import 'package:astro/featured/admin/dashboard/presentation/view%20model/products/products_number_bloc.dart';
+import 'package:astro/featured/admin/dashboard/presentation/view%20model/users/users_number_bloc.dart';
 import 'package:astro/featured/admin/home_admin/presentation/veiws/home_admin_view.dart';
 import 'package:astro/featured/auth/presentation/view_models/auth_bloc.dart';
 import 'package:astro/featured/auth/presentation/views/login_view.dart';
@@ -18,6 +22,8 @@ class AppRouter {
   static const String noNetwork = '/no-network';
   static const String homeAdmin = '/home-admin';
   static const String homeCustomer = '/home-customer';
+  static const String dashboard = '/dashboard';
+
   static final GoRouter router = GoRouter(
     initialLocation: splash,
     navigatorKey: sl<GlobalKey<NavigatorState>>(),
@@ -32,8 +38,7 @@ class AppRouter {
       ),
       GoRoute(
         path: homeAdmin,
-        builder: (context, state) => const HomeAdmin(),
-      ),
+        builder: (context, state)  => const HomeAdmin(),),
       GoRoute(
         path: signUp,
         builder: (context, state) => MultiBlocProvider(

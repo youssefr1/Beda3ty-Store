@@ -47,7 +47,7 @@ class DashboardContainer extends StatelessWidget {
                   ),
                   const Spacer(),
                   if(isLoaidng)
-                    LoadingShimmer(height:  30.h,width: 100.w,)
+                    LoadingShimmer(height:  30.h,width: 60.w,)
                     else
                   TextApp(
                     text: number,

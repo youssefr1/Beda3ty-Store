@@ -18,6 +18,7 @@ class UsersNumberBloc extends Bloc<UsersNumberEvent, UsersNumberState> {
       getUserNumber event,
       Emitter<UsersNumberState> emit,
       ) async {
+    emit(const UsersNumberState.loading());
     final data = await repo.Usersnumber();
 
     data.when(

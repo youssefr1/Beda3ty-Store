@@ -22,6 +22,7 @@ class ProductsNumberBloc
   FutureOr<void> GetProductsNumber(
       getProductNumber event,
       Emitter<ProductsNumberState> emit,) async {
+    emit(const ProductsNumberState.loading());
     final data = await repo.Productnumber();
     data.when(success:
         (productsdata) {
