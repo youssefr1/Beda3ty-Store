@@ -26,7 +26,10 @@ class _LoginTextFormState extends State<LoginTextForm> {
   late AuthBloc _bloc ;
 @override
   void initState() {
-_bloc = context.read<AuthBloc>();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    _bloc = context.read<AuthBloc>();
+    setState(() {}); // عشان يتحدث بعد ما ناخد الـ bloc
+  });
 super.initState();
   }
   // controllers ثابتة

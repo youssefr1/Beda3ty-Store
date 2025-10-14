@@ -21,11 +21,11 @@ class TextApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      softWrap: softWrap,
+      softWrap: false,
       style: theme,
-      overflow: textOverflow,
+      overflow: textOverflow ??TextOverflow.ellipsis,
       textAlign: textAlign,
-      maxLines: maxLines,
+      maxLines: maxLines??1,
     );
   }
 }

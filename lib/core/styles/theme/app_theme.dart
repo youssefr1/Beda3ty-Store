@@ -21,7 +21,7 @@ ThemeData themeDark() {
         fontSize: 14,
         color: ColorsDark.white,
         fontFamily:
-            FontFamilyHelper.geLocalizationFontFamily(),
+        FontFamilyHelper.geLocalizationFontFamily(),
       ),
     ),
   );

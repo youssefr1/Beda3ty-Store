@@ -1,5 +1,7 @@
+import 'package:astro/core/common/animation/animate_do.dart';
 import 'package:astro/core/common/widjets/text_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
+import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/core/styles/images/app_images.dart';
 import 'package:astro/featured/admin/dashboard/presentation/veiws/widjets/dashboard_container.dart';
 import 'package:astro/featured/admin/dashboard/presentation/view%20model/category/categories_number_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:astro/featured/admin/dashboard/presentation/view%20model/users/u
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class DashboardBodyView extends StatelessWidget {
   const DashboardBodyView({super.key});
@@ -37,19 +40,24 @@ class DashboardBodyView extends StatelessWidget {
               builder: (context, state) {
                 return state.when(
                   succsse: (productNumber) {
-                    return DashboardContainer(
-                      title: 'Products',
-                      number: productNumber,
-                      image: AppImages.productsDrawer,
-                      isLoaidng: false,
+                    return CustomFadeInRight(duration: 400,
+                      child: DashboardContainer(
+                        title: 'Products',
+                        number: productNumber,
+                        image: AppImages.productsDrawer,
+                        isLoaidng: false,
+                      ),
                     );
                   },
                   loading: () {
-                    return const DashboardContainer(
-                      title: 'Products',
-                      number: '0',
-                      image: AppImages.productsDrawer,
-                      isLoaidng: true,
+                    return const CustomFadeInRight(
+                      duration: 400,
+                      child: DashboardContainer(
+                        title: 'Products',
+                        number: '0',
+                        image: AppImages.productsDrawer,
+                        isLoaidng: true,
+                      ),
                     );
                   },
                   failure: (error) {
@@ -69,20 +77,25 @@ class DashboardBodyView extends StatelessWidget {
               builder: (context, state) {
                 return state.when(
                     succsse: (categoryNum){
-                    return  DashboardContainer(
-                        title: 'Categories',
-                        number: categoryNum,
-                        image: AppImages.categoriesDrawer,
-                        isLoaidng: false,
-                      );
+                    return  CustomFadeInRight(
+                      duration: 400,
+                      child: DashboardContainer(
+                          title: 'Categories',
+                          number: categoryNum,
+                          image: AppImages.categoriesDrawer,
+                          isLoaidng: false,
+                        ),
+                    );
                     },
                     loading: (){
-                   return   const DashboardContainer(
-                        title: 'Categories',
-                        number: '0',
-                        image: AppImages.categoriesDrawer,
-                        isLoaidng: true,
-                      );
+                   return   const CustomFadeInRight(duration: 400,
+                     child: DashboardContainer(
+                          title: 'Categories',
+                          number: '0',
+                          image: AppImages.categoriesDrawer,
+                          isLoaidng: true,
+                        ),
+                   );
                     },
                     failure: (error){
                       return TextApp(
@@ -100,19 +113,25 @@ class DashboardBodyView extends StatelessWidget {
       builder: (context, state) {
         return state.when(
     succsse: (usersNum){
-      return DashboardContainer(
-        title: 'Users',
-        number: usersNum,
-        image: AppImages.usersDrawer,
-        isLoaidng: false,
+      return CustomFadeInRight(
+        duration: 400,
+        child: DashboardContainer(
+          title: 'Users',
+          number: usersNum,
+          image: AppImages.usersDrawer,
+          isLoaidng: false,
+        ),
       );
     },
     loading: (){
-      return const DashboardContainer(
-        title: 'Users',
-        number: '0',
-        image: AppImages.usersDrawer,
-        isLoaidng: true,
+      return const CustomFadeInRight(
+        duration: 400,
+        child: DashboardContainer(
+          title: 'Users',
+          number: '0',
+          image: AppImages.usersDrawer,
+          isLoaidng: true,
+        ),
       );
     },
     failure: (error){

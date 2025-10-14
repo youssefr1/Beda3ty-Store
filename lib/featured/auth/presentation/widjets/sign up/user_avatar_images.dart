@@ -32,7 +32,9 @@ class UserAvatarImages extends StatelessWidget {
               },
               failure: (errorMessage){
                ShowToast.showToastErrorTop(message: errmessage);
-              });
+              }
+
+              );
             },
             builder: (context, state) {
               final isImageUploaded = context

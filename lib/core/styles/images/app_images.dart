@@ -3,6 +3,7 @@ class AppImages {
   static const noNetwork = 'assets/assets/images/core/no_network.jpg';
   static const pageUnderBuild = 'assets/assets/images/core/page_under_build.jpg';
   static const emptyScreen = 'assets/assets/images/core/empty_screen.png';
+  static const laptop ='assets/assets/images/core/maxim-hopman-Hin-rzhOdWs-unsplash.jpg';
 
   // Customer
   static const userAvatar = 'assets/assets/images/customer/user.png';

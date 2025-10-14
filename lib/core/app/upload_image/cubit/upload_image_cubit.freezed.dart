@@ -44,7 +44,7 @@ mixin _$UploadImageState {
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_initial value) initial,
+    required TResult Function(initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(SuccessState value) success,
     required TResult Function(RemoveImageState value) removeImage,
@@ -52,7 +52,7 @@ mixin _$UploadImageState {
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_initial value)? initial,
+    TResult? Function(initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(SuccessState value)? success,
     TResult? Function(RemoveImageState value)? removeImage,
@@ -60,7 +60,7 @@ mixin _$UploadImageState {
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_initial value)? initial,
+    TResult Function(initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(SuccessState value)? success,
     TResult Function(RemoveImageState value)? removeImage,
@@ -114,7 +114,7 @@ class __$$initialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$initialImpl implements _initial {
+class _$initialImpl implements initial {
   const _$initialImpl();
 
   @override
@@ -174,7 +174,7 @@ class _$initialImpl implements _initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_initial value) initial,
+    required TResult Function(initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(SuccessState value) success,
     required TResult Function(RemoveImageState value) removeImage,
@@ -186,7 +186,7 @@ class _$initialImpl implements _initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_initial value)? initial,
+    TResult? Function(initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(SuccessState value)? success,
     TResult? Function(RemoveImageState value)? removeImage,
@@ -198,7 +198,7 @@ class _$initialImpl implements _initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_initial value)? initial,
+    TResult Function(initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(SuccessState value)? success,
     TResult Function(RemoveImageState value)? removeImage,
@@ -212,8 +212,8 @@ class _$initialImpl implements _initial {
   }
 }
 
-abstract class _initial implements UploadImageState {
-  const factory _initial() = _$initialImpl;
+abstract class initial implements UploadImageState {
+  const factory initial() = _$initialImpl;
 }
 
 /// @nodoc
@@ -299,7 +299,7 @@ class _$LoadingStateImpl implements LoadingState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_initial value) initial,
+    required TResult Function(initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(SuccessState value) success,
     required TResult Function(RemoveImageState value) removeImage,
@@ -311,7 +311,7 @@ class _$LoadingStateImpl implements LoadingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_initial value)? initial,
+    TResult? Function(initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(SuccessState value)? success,
     TResult? Function(RemoveImageState value)? removeImage,
@@ -323,7 +323,7 @@ class _$LoadingStateImpl implements LoadingState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_initial value)? initial,
+    TResult Function(initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(SuccessState value)? success,
     TResult Function(RemoveImageState value)? removeImage,
@@ -424,7 +424,7 @@ class _$SuccessStateImpl implements SuccessState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_initial value) initial,
+    required TResult Function(initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(SuccessState value) success,
     required TResult Function(RemoveImageState value) removeImage,
@@ -436,7 +436,7 @@ class _$SuccessStateImpl implements SuccessState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_initial value)? initial,
+    TResult? Function(initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(SuccessState value)? success,
     TResult? Function(RemoveImageState value)? removeImage,
@@ -448,7 +448,7 @@ class _$SuccessStateImpl implements SuccessState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_initial value)? initial,
+    TResult Function(initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(SuccessState value)? success,
     TResult Function(RemoveImageState value)? removeImage,
@@ -580,7 +580,7 @@ class _$RemoveImageStateImpl implements RemoveImageState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_initial value) initial,
+    required TResult Function(initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(SuccessState value) success,
     required TResult Function(RemoveImageState value) removeImage,
@@ -592,7 +592,7 @@ class _$RemoveImageStateImpl implements RemoveImageState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_initial value)? initial,
+    TResult? Function(initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(SuccessState value)? success,
     TResult? Function(RemoveImageState value)? removeImage,
@@ -604,7 +604,7 @@ class _$RemoveImageStateImpl implements RemoveImageState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_initial value)? initial,
+    TResult Function(initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(SuccessState value)? success,
     TResult Function(RemoveImageState value)? removeImage,
@@ -742,7 +742,7 @@ class _$FailureStateImpl implements FailureState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_initial value) initial,
+    required TResult Function(initial value) initial,
     required TResult Function(LoadingState value) loading,
     required TResult Function(SuccessState value) success,
     required TResult Function(RemoveImageState value) removeImage,
@@ -754,7 +754,7 @@ class _$FailureStateImpl implements FailureState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_initial value)? initial,
+    TResult? Function(initial value)? initial,
     TResult? Function(LoadingState value)? loading,
     TResult? Function(SuccessState value)? success,
     TResult? Function(RemoveImageState value)? removeImage,
@@ -766,7 +766,7 @@ class _$FailureStateImpl implements FailureState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_initial value)? initial,
+    TResult Function(initial value)? initial,
     TResult Function(LoadingState value)? loading,
     TResult Function(SuccessState value)? success,
     TResult Function(RemoveImageState value)? removeImage,
