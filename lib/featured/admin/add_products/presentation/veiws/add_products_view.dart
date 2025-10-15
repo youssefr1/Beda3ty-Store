@@ -1,5 +1,6 @@
 import 'package:astro/core/common/widjets/custom_admin_appbar.dart';
 import 'package:astro/core/styles/colors/colors_dark.dart';
+import 'package:astro/featured/admin/add_products/presentation/refactor/add_product_body.dart';
 import 'package:flutter/material.dart';
 
 class AddProductsView extends StatelessWidget {
@@ -14,15 +15,7 @@ class AddProductsView extends StatelessWidget {
         title: 'Products',
       ),
       backgroundColor: ColorsDark.mainColor,
-      body: Center(
-        child: Text(
-          'Products Views',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-          ),
-        ),
-      ),
+      body: AddProductBody(),
     );
   }
 }
