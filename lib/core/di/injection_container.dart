@@ -8,9 +8,11 @@ import 'package:astro/featured/admin/add_categories/data/create%20categories/dat
 import 'package:astro/featured/admin/add_categories/data/create%20categories/repo/create_categories_repo.dart';
 import 'package:astro/featured/admin/add_categories/data/get%20all%20categories/data%20source/get_all_category_dataSource.dart';
 import 'package:astro/featured/admin/add_categories/data/get%20all%20categories/repo/get_all_category_repo.dart';
+import 'package:astro/featured/admin/add_categories/data/update%20categories/data%20source/update_categoies_data_source.dart';
 import 'package:astro/featured/admin/add_categories/presentation/view_model/create%20categories/create_categories_bloc.dart';
 import 'package:astro/featured/admin/add_categories/presentation/view_model/delete%20category/delete_category_bloc.dart';
 import 'package:astro/featured/admin/add_categories/presentation/view_model/getall%20categories/get_all_categories_bloc.dart';
+import 'package:astro/featured/admin/add_categories/presentation/view_model/update%20categories/update_categories_bloc.dart';
 import 'package:astro/featured/admin/dashboard/data/data%20source/admin_data_source.dart';
 import 'package:astro/featured/admin/dashboard/data/repo/dashboard_repo.dart';
 import 'package:astro/featured/admin/dashboard/presentation/view%20model/category/categories_number_bloc.dart';
@@ -32,45 +34,44 @@ Future<void> setupInjection() async {
   await _Categories();
 }
 
+/// CORE SERVICES
 Future<void> _initalCore() async {
   final dio = DioFactory.getDio();
   final navigatorKey = GlobalKey<NavigatorState>();
+
   sl
     ..registerFactory(AppCubit.new)
     ..registerLazySingleton(() => ApiService(dio))
-    ..registerSingleton<GlobalKey<NavigatorState>>(
-      navigatorKey,
-    )
+    ..registerSingleton<GlobalKey<NavigatorState>>(navigatorKey)
+
+  // 🧠 Upload Image
     ..registerFactory(() => UploadImageCubit(sl()))
-    ..registerLazySingleton(() =>
-        UploadImageRepo(sl()))..registerLazySingleton(
-        () => UploadImageDataSource(sl()),
-  );
+    ..registerLazySingleton(() => UploadImageRepo(sl()))
+    ..registerLazySingleton(() => UploadImageDataSource(sl()));
 }
 
+/// AUTH
 Future<void> _initAuth() async {
   sl
     ..registerFactory(() => AuthBloc(sl()))
-    ..registerLazySingleton(() =>
-        AuthRepos(sl()))..registerLazySingleton(() =>
-      AuthDataSource(sl()));
+    ..registerLazySingleton(() => AuthRepos(sl()))
+    ..registerLazySingleton(() => AuthDataSource(sl()));
 }
 
+/// DASHBOARD
 Future<void> _dashboard() async {
   sl
-    ..registerFactory(() =>
-        UsersNumberBloc(sl()))..registerFactory(() =>
-      CategoriesNumberBloc(sl()))..registerFactory(() =>
-      ProductsNumberBloc(sl()))
-    ..registerLazySingleton(() =>
-        DashboardRepo(sl()))..registerLazySingleton(
-        () => DashBoardDataSource(sl()),
-  );
+    ..registerFactory(() => UsersNumberBloc(sl()))
+    ..registerFactory(() => CategoriesNumberBloc(sl()))
+    ..registerFactory(() => ProductsNumberBloc(sl()))
+    ..registerLazySingleton(() => DashboardRepo(sl()))
+    ..registerLazySingleton(() => DashBoardDataSource(sl()));
 }
 
+/// CATEGORIES MODULE
 Future<void> _Categories() async {
   sl
-  // 1️⃣ Dio instance
+  // 1️⃣ Dio
     ..registerLazySingleton<Dio>(Dio.new)
 
   // 2️⃣ Get All Categories Data Source
@@ -81,21 +82,30 @@ Future<void> _Categories() async {
       ),
     )
 
-  // 3️⃣ Get All Categories Repository
-    ..registerLazySingleton<CategoryRepository>(
-          () => CategoryRepositoryImpl(
-        dataSource: sl<GetAllCategoryDataSource>(),
+  // 3️⃣ Update Category Data Source
+    ..registerLazySingleton<UpdateCategoryDataSourceImpl>(
+          () => UpdateCategoryDataSourceImpl(
+        dio: sl<Dio>(),
+        endPoint: 'https://api.escuelajs.co/graphql',
       ),
     )
 
-  // 4️⃣ Bloc لعرض كل التصنيفات
+  // 4️⃣ Repository
+    ..registerLazySingleton<CategoryRepository>(
+          () => CategoryRepositoryImpl(
+        dataSource: sl<GetAllCategoryDataSource>(),
+        updateDataSource: sl<UpdateCategoryDataSourceImpl>(),
+      ),
+    )
+
+  // 5️⃣ Get All Categories Bloc
     ..registerFactory<GetAllCategoriesBloc>(
           () => GetAllCategoriesBloc(
         repository: sl<CategoryRepository>(),
       ),
     )
 
-  // ✅ 5️⃣ Create Category Data Source
+  // 6️⃣ Create Category Data Source
     ..registerLazySingleton<CreateCategoriesDataSource>(
           () => CreateCategoriesDataSourceImp(
         dio: sl<Dio>(),
@@ -103,21 +113,27 @@ Future<void> _Categories() async {
       ),
     )
 
-  // ✅ 6️⃣ Create Category Repository
+  // 7️⃣ Create Category Repository
     ..registerLazySingleton<CreateCategoriesRepo>(
           () => CreateCategoriesRepo(
         dataSource: sl<CreateCategoriesDataSource>(),
       ),
     )
 
-  // ✅ 7️⃣ Create Category Bloc
+  // 8️⃣ Create Category Bloc
     ..registerFactory<CreateCategoriesBloc>(
           () => CreateCategoriesBloc(
         sl<CreateCategoriesRepo>(),
       ),
     )
+
+  // 9️⃣ Delete Category Bloc
     ..registerFactory<DeleteCategoriesBloc>(
           () => DeleteCategoriesBloc(sl<CategoryRepository>()),
+    )
+
+  // 🔟 Update Category Bloc
+    ..registerFactory<UpdateCategoryBloc>(
+          () => UpdateCategoryBloc(sl<CategoryRepository>()),
     );
 }
-

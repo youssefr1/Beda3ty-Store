@@ -34,7 +34,7 @@ android {
 
     buildTypes {
         release {
-            // TODO: استخدم signing config الحقيقية لاحقًا
+
             signingConfig = signingConfigs.getByName("debug")
         }
     }

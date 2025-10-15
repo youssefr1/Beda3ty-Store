@@ -47,12 +47,9 @@ class CreateCategory extends StatelessWidget {
                   child: const CreateCategoryWdjet(),
                 ),
               );
-
-// ✅ بعد ما يتقفل الـ BottomSheet، نعمل refresh
+                // ✅ بعد ما يتقفل الـ BottomSheet، نعمل refresh
               context.read<GetAllCategoriesBloc>().add(CategoryEvent());
-
             },
-
             text: 'Add',
             width: 82.w,
             height: 35.h,

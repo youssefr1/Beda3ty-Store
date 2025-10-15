@@ -46,7 +46,7 @@ class CategoryUploadProduct extends StatelessWidget {
                   height: 140.h,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade600,
+                    color: Colors.black.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(15),
                     image: DecorationImage(
                       image: NetworkImage(
@@ -70,13 +70,27 @@ class CategoryUploadProduct extends StatelessWidget {
                   height: 140.h,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade600,
+                    color: Colors.black.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Icon(
-                    Icons.add_a_photo_rounded,
-                    size: 50,
-                    color: Colors.white,
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.upload,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "Tap to upload new photo",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );
@@ -87,7 +101,7 @@ class CategoryUploadProduct extends StatelessWidget {
               height: 140.h,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: Colors.grey.shade600,
+                color: Colors.black.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(15),
               ),
               child: const CircularProgressIndicator(

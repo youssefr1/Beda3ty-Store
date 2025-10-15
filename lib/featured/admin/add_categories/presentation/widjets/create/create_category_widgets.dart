@@ -30,7 +30,7 @@ class _CreateCategoryWdjetState
 
   @override
   void dispose() {
-    // TODO: implement dispose
+
     nameController.dispose();
     super.dispose();
   }
@@ -131,6 +131,7 @@ class _CreateCategoryWdjetState
                 },
               ),
             ),
+            SizedBox(height: 15.h,),
 
             // Create Category Button
             BlocConsumer<CreateCategoriesBloc, CreateCategoriesState>(
@@ -170,7 +171,7 @@ class _CreateCategoryWdjetState
                      height: 50.h,
                      threeRadius: 20,
                      lastRadius: 20,
-                     backgroundColor: Colors.green,
+                     backgroundColor: Colors.transparent,
                    );
                  }
                  else if(state is CreateCategoriesLoading){
@@ -178,11 +179,11 @@ class _CreateCategoryWdjetState
                     height: 50.h,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Colors.transparent,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(child: CircularProgressIndicator(
-                      color: context.color.bluePinkDark,
+                      color: context.color.bluePinkLight,
                     ),),
                   );
                  }else{

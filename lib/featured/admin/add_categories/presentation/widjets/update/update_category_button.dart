@@ -1,16 +1,28 @@
+import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:astro/core/common/widjets/custom_button.dart';
 import 'package:astro/core/common/widjets/custom_text_field.dart';
+import 'package:astro/core/common/widjets/show_toast.dart';
 import 'package:astro/core/common/widjets/text_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/styles/fonts/font_weight_helper.dart';
-import 'package:astro/featured/admin/add_categories/presentation/widjets/create/category_upload_product.dart';
-import 'package:astro/featured/admin/add_categories/presentation/widjets/update/update_category_photo.dart';
+import 'package:astro/featured/admin/add_categories/presentation/view_model/getall%20categories/get_all_categories_bloc.dart';
+import 'package:astro/featured/admin/add_categories/presentation/view_model/update%20categories/update_categories_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class UpdateCategoryButton extends StatefulWidget {
-  const UpdateCategoryButton({super.key});
+  final int categoryId;
+  final String oldName;
+  final String oldImage;
 
+  const UpdateCategoryButton({
+    super.key,
+    required this.categoryId,
+    required this.oldName,
+    required this.oldImage,
+  });
 
   @override
   State<UpdateCategoryButton> createState() => _UpdateCategoryButtonState();
@@ -18,21 +30,24 @@ class UpdateCategoryButton extends StatefulWidget {
 
 class _UpdateCategoryButtonState extends State<UpdateCategoryButton> {
   final formKey = GlobalKey<FormState>();
-  TextEditingController nameController =
-  TextEditingController();
+  late TextEditingController nameController;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController(text: widget.oldName);
+  }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     nameController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 20.h,
-      ),
+      padding: EdgeInsets.symmetric(vertical: 20.h),
       child: Form(
         key: formKey,
         child: Column(
@@ -48,35 +63,91 @@ class _UpdateCategoryButtonState extends State<UpdateCategoryButton> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Row(
-              mainAxisAlignment:
-              MainAxisAlignment.spaceBetween,
-              children: [
-                TextApp(
-                  text: 'Update a photo',
-                  theme: context.textStyle.copyWith(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeightHelper.medium,
-                    fontFamily: 'Poppins',
-                  ),
-                ),
+            SizedBox(height: 20.h),
 
-              ],
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            // upload photo
-            const UpdateCategoryPhoto(imageurl: 'https://plus.unsplash.com/premium_photo-1680538420450-ff2f4c19faa9?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',),
-            SizedBox(
-              height: 20.h,
-            ),
-            // enter the category name
             TextApp(
-              text: 'Update the Category name',
+              text: 'Update Category Photo',
+              theme: context.textStyle.copyWith(
+                fontSize: 16.sp,
+                fontWeight: FontWeightHelper.medium,
+                fontFamily: 'Poppins',
+              ),
+            ),
+            SizedBox(height: 20.h),
+
+            /// 🖼️ BlocBuilder to display and upload new image
+            BlocBuilder<UploadImageCubit, UploadImageState>(
+              builder: (context, state) {
+                final cubit = context.read<UploadImageCubit>();
+                final imageUrl = cubit.getImageUrl.isNotEmpty
+                    ? cubit.getImageUrl
+                    : widget.oldImage;
+
+                final hasNewImage = cubit.getImageUrl.isNotEmpty;
+
+                return GestureDetector(
+                  onTap: cubit.uploadImage,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      /// الصورة القديمة أو الجديدة
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: CachedNetworkImage(
+                          imageUrl: imageUrl,
+                          height: 180.h,
+                          width: double.infinity,
+                          fit: BoxFit.contain,
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) => const Icon(
+                            Icons.error,
+                            size: 60,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+
+                      /// أيقونة Upload بتظهر فوق الصورة القديمة فقط
+                      if (!hasNewImage)
+                        Container(
+                          height: 180.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.upload,
+                                color: Colors.white,
+                                size: 50,
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                "Tap to upload new photo",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
+
+            SizedBox(height: 20.h),
+
+            TextApp(
+              text: 'Update Category Name',
               theme: context.textStyle.copyWith(
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.medium,
@@ -88,29 +159,61 @@ class _UpdateCategoryButtonState extends State<UpdateCategoryButton> {
               padding: EdgeInsets.symmetric(vertical: 15.h),
               child: CustomTextField(
                 controller: nameController,
-                keyboardType: TextInputType.emailAddress,
-                hintText: 'Enter the Category name',
+                hintText: 'Enter new category name',
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      value == null ||
-                      value.length < 2) {
-                    return 'please enter valid category name';
+                  if (value == null || value.isEmpty || value.length < 2) {
+                    return 'Please enter a valid category name';
                   }
                   return null;
                 },
               ),
             ),
-            CustomButton(
-              onPressed: (){},
-              text: ' Create a new category',
-              width: MediaQuery.of(context).size.width,
-              height: 50.h,
-              threeRadius: 20,
-              lastRadius: 20,
-              backgroundColor: Colors.green,
+
+            BlocConsumer<UpdateCategoryBloc, UpdateCategoryState>(
+              listener: (context, state) {
+                if (state is UpdateCategorySuccess) {
+                  ShowToast.showToastSuccessTop(
+                      message: 'Category Updated Successfully');
+                  Navigator.pop(context,true);
+                  context.read<GetAllCategoriesBloc>().add(CategoryEvent());
+                } else if (state is UpdateCategoryFailure) {
+                  ShowToast.showToastErrorTop(message: state.error);
+                }
+              },
+              builder: (context, state) {
+                if (state is UpdateCategoryLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return CustomButton(
+                  onPressed: () => _updateCategory(context),
+                  text: 'Update Category',
+                  width: MediaQuery.of(context).size.width,
+                  height: 50.h,
+                  threeRadius: 20,
+                  lastRadius: 20,
+                  backgroundColor: Colors.green,
+                );
+              },
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _updateCategory(BuildContext context) {
+    if (!formKey.currentState!.validate()) return;
+
+    final cubit = context.read<UploadImageCubit>();
+    final newImage = cubit.getImageUrl.isEmpty
+        ? widget.oldImage
+        : cubit.getImageUrl;
+
+    context.read<UpdateCategoryBloc>().add(
+      SubmitUpdateCategory(
+        id: widget.categoryId,
+        name: nameController.text.trim(),
+        image: newImage,
       ),
     );
   }
