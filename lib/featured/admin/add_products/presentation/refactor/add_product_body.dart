@@ -1,60 +1,80 @@
+import 'package:astro/featured/admin/add_products/presentation/view%20modell/getall%20product/get_all_product_cubit.dart';
 import 'package:astro/featured/admin/add_products/presentation/widjets/create/create_products.dart';
 import 'package:astro/featured/admin/add_products/presentation/widjets/product_admin_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+
 
 class AddProductBody extends StatelessWidget {
   const AddProductBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<GetAllProductCubit>();
+
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: 30.w,
-        vertical: 30.h,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 30.h),
       child: Column(
         children: [
-          // Create Product Button
           const CreateProducts(),
-          // Get All Product list view item
           Expanded(
-            child: RefreshIndicator(
-              onRefresh: () async {},
-              child: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: SizedBox(height: 20.h),
-                  ),
-                  SliverToBoxAdapter(
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      physics:
-                          const NeverScrollableScrollPhysics(),
-                      itemCount: 10,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // Numbers of product in one Row
-                            crossAxisSpacing: 8 // padding bewteen products horizontal
-                            ,mainAxisSpacing:15 , // padding bewteen products vertical
-                        childAspectRatio: 165 / 250, //
+            child: BlocBuilder<GetAllProductCubit, GetAllProductState>(
+              builder: (context, state) {
+                if (state is GetAllProductsLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (state is GetAllProductsFailure) {
+                  return Center(child: Text(state.message));
+                }
+
+                if (state is GetAllProductsSuccess) {
+                  final products = state.products;
+
+                  return RefreshIndicator(
+                    onRefresh: () async => cubit.getAllProducts(),
+                    child: CustomScrollView(
+                      slivers: [
+                        SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+
+                        SliverToBoxAdapter(
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: products.length,
+                            gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 8,
+                              mainAxisSpacing: 15,
+                              childAspectRatio: 165 / 250,
+                            ),
+                            itemBuilder: (context, index) {
+                              final product = products[index];
+
+                              return ProductAdminItem(
+                                imageUrl: product.images.isNotEmpty
+                                    ? product.images.first
+                                    : "https://via.placeholder.com/150",
+                                title: product.title,
+                                categoryName: product.category.name,
+                                price: product.price.toString(),
+                              );
+                            },
                           ),
-                      itemBuilder: (BuildContext context, int index,) {
-                            return const ProductAdminItem(
-                              imageUrl:
-                                  'https://media.wired.com/photos/5b8999943667562d3024c321/3:2/w_1920,c_limit/trash2-01.jpg',
-                              title: ' MacBook h32 ',
-                              categoryName: 'Shoes',
-                              price: '150',
-                            );
-                          },
+                        ),
+
+                        SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+                      ],
                     ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: SizedBox(height: 20.h),
-                  ),
-                ],
-              ),
+                  );
+                }
+
+                return const SizedBox();
+              },
             ),
           ),
         ],

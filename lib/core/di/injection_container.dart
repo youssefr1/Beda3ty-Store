@@ -13,6 +13,9 @@ import 'package:astro/featured/admin/add_categories/presentation/view_model/crea
 import 'package:astro/featured/admin/add_categories/presentation/view_model/delete%20category/delete_category_bloc.dart';
 import 'package:astro/featured/admin/add_categories/presentation/view_model/getall%20categories/get_all_categories_bloc.dart';
 import 'package:astro/featured/admin/add_categories/presentation/view_model/update%20categories/update_categories_bloc.dart';
+import 'package:astro/featured/admin/add_products/data/get%20all%20products/data%20source/product_datasource.dart';
+import 'package:astro/featured/admin/add_products/data/get%20all%20products/repo/product_repo.dart';
+import 'package:astro/featured/admin/add_products/presentation/view%20modell/getall%20product/get_all_product_cubit.dart';
 import 'package:astro/featured/admin/dashboard/data/data%20source/admin_data_source.dart';
 import 'package:astro/featured/admin/dashboard/data/repo/dashboard_repo.dart';
 import 'package:astro/featured/admin/dashboard/presentation/view%20model/category/categories_number_bloc.dart';
@@ -32,6 +35,7 @@ Future<void> setupInjection() async {
   await _initAuth();
   await _dashboard();
   await _Categories();
+  await _Products();
 }
 
 /// CORE SERVICES
@@ -135,5 +139,23 @@ Future<void> _Categories() async {
   // 🔟 Update Category Bloc
     ..registerFactory<UpdateCategoryBloc>(
           () => UpdateCategoryBloc(sl<CategoryRepository>()),
+    );
+}
+
+Future<void> _Products() async {
+  sl
+  // 1️⃣ Data Source
+    ..registerLazySingleton<ProductDataSource>(
+          () => ProductDataSource(),
+    )
+
+  // 2️⃣ Repository
+    ..registerLazySingleton<ProductRepository>(
+          () => ProductRepository(sl<ProductDataSource>()),
+    )
+
+  // 3️⃣ Cubit
+    ..registerFactory<GetAllProductCubit>(
+          () => GetAllProductCubit(sl<ProductRepository>()),
     );
 }
