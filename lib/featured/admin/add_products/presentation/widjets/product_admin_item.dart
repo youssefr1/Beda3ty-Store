@@ -1,3 +1,4 @@
+import 'package:astro/core/common/bottom%20sheet/custom_bottom_sheet.dart';
 import 'package:astro/core/common/widjets/custom_container_linear_admin.dart';
 import 'package:astro/core/common/widjets/text_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
@@ -5,6 +6,7 @@ import 'package:astro/core/routes/app_routes.dart';
 import 'package:astro/core/styles/fonts/font_family_helper.dart';
 import 'package:astro/core/styles/fonts/font_weight_helper.dart';
 import 'package:astro/core/styles/images/app_images.dart';
+import 'package:astro/featured/admin/add_products/presentation/widjets/update/update_product_bottomsheet.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +49,12 @@ class ProductAdminItem extends StatelessWidget {
                 ),
                 //Update Button
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    CustomBottomSheet.showModelBottomSheetContainer(
+                      context: context,
+                      widjet:const UpdateProductBottomsheet() ,
+                    );
+                  },
                   padding: EdgeInsets.zero,
                   icon: const Icon(
                     Icons.edit,
