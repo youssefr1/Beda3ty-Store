@@ -10,7 +10,8 @@ import 'package:astro/featured/admin/add_categories/presentation/veiws/add_categ
 import 'package:astro/featured/admin/add_notifications/presentation/veiws/add_notifications_view.dart';
 import 'package:astro/featured/admin/add_products/presentation/veiws/add_products_view.dart';
 import 'package:astro/featured/admin/dashboard/presentation/veiws/dashboard_view.dart';
-import 'package:astro/featured/admin/users/presentation/veiws/user_view.dart';
+import 'package:astro/featured/admin/notifications/presentation/views/notifications_view.dart';
+import 'package:astro/featured/admin/users/presentation/views/users_view.dart';
 import 'package:astro/featured/auth/presentation/views/login_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ List<DrawerItemModel> adminDrwaerList(
         ),
 
       ),
-      page: const UserView(),
+      page: const UsersView(),
     ),
     // notifcation
     DrawerItemModel(
@@ -107,7 +108,7 @@ List<DrawerItemModel> adminDrwaerList(
         ),
 
       ),
-      page: const AddNotificationsView(),
+      page:const NotificationsView(),
     ),
     DrawerItemModel(
       icon: const Icon(

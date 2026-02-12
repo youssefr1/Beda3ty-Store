@@ -16,6 +16,8 @@ import 'package:astro/featured/splash/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:astro/featured/admin/notifications/presentation/views/notifications_view.dart';
+import 'package:astro/featured/admin/users/presentation/views/users_view.dart';
 
 class AppRouter {
   static const String splash = '/splash';
@@ -27,7 +29,9 @@ class AppRouter {
   static const String dashboard = '/dashboard';
   static const String categories = '/categories';
   static const String products = '/products';
+
   static const String users = '/users';
+  static const String notifications = '/notifications';
 
   static final GoRouter router = GoRouter(
     initialLocation: splash,
@@ -82,6 +86,14 @@ class AppRouter {
         ),
       ),
 
+      GoRoute(
+        path: notifications,
+        builder: (context, state) => const NotificationsView(),
+      ),
+      GoRoute(
+        path: users,
+        builder: (context, state) => const UsersView(),
+      ),
     ],
   );
 }
