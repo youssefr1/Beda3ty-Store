@@ -1,1 +1,1 @@
-const String errmessage = 'Something went wrong';
+const String errmessage = 'Something Went Wrong';
