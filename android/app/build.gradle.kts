@@ -1,14 +1,19 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    // لازم يكون بعد الـ Android و Kotlin plugins
     id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
     namespace = "com.example.astro"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+
+    // ✅ الحل للمشكلة: حدّد SDK 36 بدل flutter.compileSdkVersion
+    compileSdk = 36
+
+    // إصدار الـ NDK (خليه زي ما هو لو بيشتغل معاك تمام)
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -20,23 +25,33 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.astro"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 23          // الحد الأدنى للإصدار
+        targetSdk = 36       // ✅ من الأفضل توحيد targetSdk مع compileSdk
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+}
+
+dependencies {
+    // ✅ حزمة Firebase الرئيسية
+    implementation(platform("com.google.firebase:firebase-bom:34.2.0"))
+
+    // Firebase Analytics
+    implementation("com.google.firebase:firebase-analytics")
+
+    // لو تستخدم Firebase Authentication
+    implementation("com.google.firebase:firebase-auth")
+
+    // لو تستخدم Cloud Firestore
+    implementation("com.google.firebase:firebase-firestore")
 }
 
 flutter {
