@@ -21,55 +21,52 @@ class SignUpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        state.whenOrNull(
-          success: (userRole) {
-            ShowToast.showToastSuccessTop(
-              message: context.translate(
-                LangKeys.loggedSuccessfully,
-              ),
-            );
-            context.goRoute(AppRouter.login);
-          },
-          failure: (errmessage) {
-            ShowToast.showToastErrorTop(message: errmessage);
-
-          },
-        );
+        if (state is AuthSuccess) {
+          ShowToast.showToastSuccessTop(
+            message: context.translate(
+              LangKeys.loggedSuccessfully,
+            ),
+          );
+          if (state.userRole.toLowerCase() == 'admin') {
+            context.goRoute(AppRouter.homeAdmin);
+          } else {
+            context.goRoute(AppRouter.homeCustomer);
+          }
+        } else if (state is AuthFailure) {
+          ShowToast.showToastErrorTop(message: state.errmessage);
+        }
       },
       builder: (context, state) {
-        return state.maybeWhen(
-          loading: () {
-            return CustomFadeInDown(
-              duration: 500,
-              child: CustomLinearButton(
-                width: MediaQuery.of(context).size.width,
-                onPressed: () {},
-                child: const CircularProgressIndicator(
-                  color: ColorsLight.mainColor,
+        if (state is AuthLoading) {
+          return CustomFadeInDown(
+            duration: 500,
+            child: CustomLinearButton(
+              width: MediaQuery.of(context).size.width,
+              onPressed: () {},
+              child: const CircularProgressIndicator(
+                color: ColorsLight.mainColor,
+              ),
+            ),
+          );
+        } else {
+          return CustomFadeInDown(
+            duration: 500,
+            child: CustomLinearButton(
+              width: MediaQuery.of(context).size.width,
+              onPressed: () {
+                _validateThenDoSignUp(context);
+              },
+              child: TextApp(
+                text: context.translate(LangKeys.signUp),
+                theme: context.textStyle.copyWith(
+                  fontSize: 22.sp,
+                  fontWeight: FontWeightHelper.medium,
+                  color: Colors.white,
                 ),
               ),
-            );
-          },
-          orElse: () {
-            return CustomFadeInDown(
-              duration: 500,
-              child: CustomLinearButton(
-                width: MediaQuery.of(context).size.width,
-                onPressed: () {
-                  _validateThenDoSignUp(context);
-                },
-                child: TextApp(
-                  text: context.translate(LangKeys.signUp),
-                  theme: context.textStyle.copyWith(
-                    fontSize: 22.sp,
-                    fontWeight: FontWeightHelper.medium,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            );
-          },
-        );
+            ),
+          );
+        }
       },
     );
   }
@@ -89,7 +86,7 @@ class SignUpButton extends StatelessWidget {
       }
     } else {
       context.read<AuthBloc>().add(
-        AuthEvent.signUp(imageUrl: imageUplaod.getImageUrl),
+        SignUpEvent(imageUrl: imageUplaod.getImageUrl),
       );
     }
   }

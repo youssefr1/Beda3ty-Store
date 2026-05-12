@@ -1,4 +1,3 @@
-
 import 'package:astro/core/common/widjets/text_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
 import 'package:astro/core/styles/fonts/font_family_helper.dart';
@@ -59,7 +58,6 @@ class CustomButton extends StatelessWidget {
             fontWeight: FontWeightHelper.medium,
             fontFamily: FontFamilyHelper.poppinsEnglish,
             fontSize: 17.sp,
-
           ),
           text: text,
           textAlign: textAlign,

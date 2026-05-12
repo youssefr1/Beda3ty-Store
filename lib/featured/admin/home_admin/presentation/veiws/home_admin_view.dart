@@ -20,24 +20,22 @@ class _HomeAdminState extends State<HomeAdmin> {
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
-      menuScreen:
-      Builder(
+      menuScreen: Builder(
         builder: (context) {
-          return  MenuAdminDrawer(
+          return MenuAdminDrawer(
             onChangedPage: (a) {
               setState(() {
-                page =a;
+                page = a;
                 ZoomDrawer.of(context)!.close();
               });
-            } ,
+            },
           );
         },
       ),
       mainScreen: page,
       borderRadius: 24,
       showShadow: true,
-      drawerShadowsBackgroundColor: ColorsDark.mainColor
-          .withOpacity(0.6),
+      drawerShadowsBackgroundColor: ColorsDark.mainColor.withOpacity(0.6),
       menuBackgroundColor: ColorsDark.blueDark,
     );
   }
@@ -45,10 +43,9 @@ class _HomeAdminState extends State<HomeAdmin> {
 
 class MenuAdminDrawer extends StatelessWidget {
   const MenuAdminDrawer({required this.onChangedPage, super.key});
-  final void Function(Widget) onChangedPage ;
+  final void Function(Widget) onChangedPage;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorsDark.blueDark,
       appBar: const CustomAdminAppbar(
@@ -59,21 +56,29 @@ class MenuAdminDrawer extends StatelessWidget {
       body: Column(
         children: [
           Column(
-            children: adminDrwaerList(
-              context,
-            ).map((e) => ListTile(
-              onTap: (){
-                onChangedPage(e.page);
-              },
-              title: e.title,
-              leading: e.icon,
-            )).toList(),
+            children:
+                adminDrwaerList(
+                      context,
+                    )
+                    .map(
+                      (e) => ListTile(
+                        onTap: () {
+                          onChangedPage(e.page);
+                        },
+                        title: e.title,
+                        leading: e.icon,
+                      ),
+                    )
+                    .toList(),
           ),
-          Expanded(child: Image.asset("assets/assets/images/core/logo.png"
-          ,width: 300,))
+          Expanded(
+            child: Image.asset(
+              "assets/assets/images/core/logo.png",
+              width: 300,
+            ),
+          ),
         ],
       ),
-      
     );
   }
 }

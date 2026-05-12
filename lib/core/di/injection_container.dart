@@ -2,7 +2,6 @@ import 'package:astro/core/app/app_cubit/app_cubit.dart';
 import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:astro/core/app/upload_image/data_source/upload_image_dataSource.dart';
 import 'package:astro/core/app/upload_image/repo/upload_image_repo.dart';
-import 'package:astro/core/services/graphql/api_service.dart';
 import 'package:astro/core/services/graphql/dio_factory.dart';
 import 'package:astro/featured/admin/add_categories/data/create%20categories/data%20source/create_categories_data_source.dart';
 import 'package:astro/featured/admin/add_categories/data/create%20categories/repo/create_categories_repo.dart';
@@ -24,12 +23,10 @@ import 'package:astro/featured/admin/dashboard/presentation/view%20model/users/u
 import 'package:astro/featured/auth/data/data_source/auth_data_source.dart';
 import 'package:astro/featured/auth/data/repos/auth_repos.dart';
 import 'package:astro/featured/auth/presentation/view_models/auth_bloc.dart';
+import 'package:astro/featured/customer/di/customer_di.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
-import 'package:astro/featured/admin/notifications/data/data_source/notification_data_source.dart';
-import 'package:astro/featured/admin/notifications/data/repo/notification_repo.dart';
-import 'package:astro/featured/admin/notifications/presentation/cubit/notification_cubit.dart';
 import 'package:astro/featured/admin/users/data/data_source/users_data_source.dart';
 import 'package:astro/featured/admin/users/data/repo/users_repo.dart';
 import 'package:astro/featured/admin/users/presentation/cubit/users_cubit.dart';
@@ -42,8 +39,8 @@ Future<void> setupInjection() async {
   await _dashboard();
   await _Categories();
   await _Products();
-  await _initNotifications();
   await _initUsers();
+  await initCustomerDI();
 }
 
 /// CORE SERVICES
@@ -53,10 +50,11 @@ Future<void> _initalCore() async {
 
   sl
     ..registerFactory(AppCubit.new)
-    ..registerLazySingleton(() => ApiService(dio))
     ..registerSingleton<GlobalKey<NavigatorState>>(navigatorKey)
-
-  // 🧠 Upload Image
+    ..registerLazySingleton<Dio>(
+      DioFactory.getDio,
+    ) // Registering Dio globally for easier access
+    // 🧠 Upload Image
     ..registerFactory(() => UploadImageCubit(sl()))
     ..registerLazySingleton(() => UploadImageRepo(sl()))
     ..registerLazySingleton(() => UploadImageDataSource(sl()));
@@ -83,120 +81,86 @@ Future<void> _dashboard() async {
 /// CATEGORIES MODULE
 Future<void> _Categories() async {
   sl
-  // 1️⃣ Dio
-    ..registerLazySingleton<Dio>(Dio.new)
-
-  // 2️⃣ Get All Categories Data Source
+    // 1️⃣ Get All Categories Data Source
     ..registerLazySingleton<GetAllCategoryDataSource>(
-          () => GetAllCategoryDataSourceImpl(
+      () => GetAllCategoryDataSourceImpl(
         dio: sl<Dio>(),
-        endPoint: 'https://api.escuelajs.co/graphql',
       ),
     )
-
-  // 3️⃣ Update Category Data Source
+    // 2️⃣ Update Category Data Source
     ..registerLazySingleton<UpdateCategoryDataSourceImpl>(
-          () => UpdateCategoryDataSourceImpl(
+      () => UpdateCategoryDataSourceImpl(
         dio: sl<Dio>(),
-        endPoint: 'https://api.escuelajs.co/graphql',
       ),
     )
-
-  // 4️⃣ Repository
+    // 3️⃣ Repository
     ..registerLazySingleton<CategoryRepository>(
-          () => CategoryRepositoryImpl(
+      () => CategoryRepositoryImpl(
         dataSource: sl<GetAllCategoryDataSource>(),
         updateDataSource: sl<UpdateCategoryDataSourceImpl>(),
       ),
     )
-
-  // 5️⃣ Get All Categories Bloc
+    // 4️⃣ Get All Categories Bloc
     ..registerFactory<GetAllCategoriesBloc>(
-          () => GetAllCategoriesBloc(
+      () => GetAllCategoriesBloc(
         repository: sl<CategoryRepository>(),
       ),
     )
-
-  // 6️⃣ Create Category Data Source
+    // 5️⃣ Create Category Data Source
     ..registerLazySingleton<CreateCategoriesDataSource>(
-          () => CreateCategoriesDataSourceImp(
+      () => CreateCategoriesDataSourceImp(
         dio: sl<Dio>(),
-        endPoint: 'https://api.escuelajs.co/graphql',
       ),
     )
-
-  // 7️⃣ Create Category Repository
+    // 6️⃣ Create Category Repository
     ..registerLazySingleton<CreateCategoriesRepo>(
-          () => CreateCategoriesRepo(
+      () => CreateCategoriesRepo(
         dataSource: sl<CreateCategoriesDataSource>(),
       ),
     )
-
-  // 8️⃣ Create Category Bloc
+    // 7️⃣ Create Category Bloc
     ..registerFactory<CreateCategoriesBloc>(
-          () => CreateCategoriesBloc(
+      () => CreateCategoriesBloc(
         sl<CreateCategoriesRepo>(),
-        sl<NotificationRepo>(),
       ),
     )
-
-  // 9️⃣ Delete Category Bloc
+    // 8️⃣ Delete Category Bloc
     ..registerFactory<DeleteCategoriesBloc>(
-          () => DeleteCategoriesBloc(sl<CategoryRepository>(), sl<NotificationRepo>()),
+      () => DeleteCategoriesBloc(sl<CategoryRepository>()),
     )
-
-  // 🔟 Update Category Bloc
+    // 9️⃣ Update Category Bloc
     ..registerFactory<UpdateCategoryBloc>(
-          () => UpdateCategoryBloc(sl<CategoryRepository>(), sl<NotificationRepo>()),
+      () => UpdateCategoryBloc(sl<CategoryRepository>()),
     );
 }
 
 Future<void> _Products() async {
   sl
-  // 1️⃣ Data Source
+    // 1️⃣ Data Source
     ..registerLazySingleton<ProductDataSource>(
-          () => ProductDataSource(),
+      () => ProductDataSource(dio: sl<Dio>()),
     )
-
-  // 2️⃣ Repository
+    // 2️⃣ Repository
     ..registerLazySingleton<ProductRepository>(
-          () => ProductRepository(sl<ProductDataSource>()),
+      () => ProductRepository(sl<ProductDataSource>()),
     )
-
-  // 3️⃣ Cubit
+    // 3️⃣ Cubit
     ..registerFactory<GetAllProductCubit>(
-          () => GetAllProductCubit(sl<ProductRepository>()),
-    );
-}
-
-Future<void> _initNotifications() async {
-  sl
-    ..registerLazySingleton<NotificationDataSource>(
-          () => NotificationDataSourceImpl(
-        dio: sl<Dio>(),
-        endPoint: 'https://api.escuelajs.co/graphql',
-      ),
-    )
-    ..registerLazySingleton<NotificationRepo>(
-          () => NotificationRepoImpl(sl<NotificationDataSource>()),
-    )
-    ..registerFactory<NotificationCubit>(
-          () => NotificationCubit(sl<NotificationRepo>()),
+      () => GetAllProductCubit(sl<ProductRepository>()),
     );
 }
 
 Future<void> _initUsers() async {
   sl
     ..registerLazySingleton<UsersDataSource>(
-          () => UsersDataSourceImpl(
+      () => UsersDataSourceImpl(
         dio: sl<Dio>(),
-        endPoint: 'https://api.escuelajs.co/graphql',
       ),
     )
     ..registerLazySingleton<UsersRepo>(
-          () => UsersRepoImpl(sl<UsersDataSource>()),
+      () => UsersRepoImpl(sl<UsersDataSource>()),
     )
     ..registerFactory<UsersCubit>(
-          () => UsersCubit(sl<UsersRepo>()),
+      () => UsersCubit(sl<UsersRepo>()),
     );
 }

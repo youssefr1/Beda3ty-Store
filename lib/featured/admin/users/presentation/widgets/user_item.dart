@@ -25,7 +25,9 @@ class UserItem extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 25.r,
-            backgroundImage: user.avatar.isNotEmpty ? NetworkImage(user.avatar) : null,
+            backgroundImage: user.avatar.isNotEmpty
+                ? NetworkImage(user.avatar)
+                : null,
             backgroundColor: Colors.grey,
             child: user.avatar.isEmpty
                 ? const Icon(Icons.person, color: Colors.white)

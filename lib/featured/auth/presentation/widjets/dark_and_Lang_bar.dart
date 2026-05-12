@@ -45,20 +45,19 @@ class DarkAndLangBar extends StatelessWidget {
               duration: 500,
               child: CustomLinearButton(
                 width: 100,
-                onPressed: (){
-                  if(AppLocalizations.of(context)!.isEnLocale){
-                     cubit.toArabic();
-                  }else{
+                onPressed: () {
+                  if (AppLocalizations.of(context)!.isEnLocale) {
+                    cubit.toArabic();
+                  } else {
                     cubit.toEnglish();
                   }
                 },
-                child:  TextApp(
-                  text: context.translate(
-                      LangKeys.language),
+                child: TextApp(
+                  text: context.translate(LangKeys.language),
                   theme: context.textStyle.copyWith(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeightHelper.bold
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeightHelper.bold,
                   ),
                 ),
               ),

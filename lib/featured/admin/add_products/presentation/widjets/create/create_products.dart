@@ -33,8 +33,7 @@ class CreateProducts extends StatelessWidget {
             onPressed: () {
               CustomBottomSheet.showModelBottomSheetContainer(
                 context: context,
-                widjet: CreateProductBottomsheet(
-                ),
+                widjet: CreateProductBottomsheet(),
               );
             },
             text: 'Add',

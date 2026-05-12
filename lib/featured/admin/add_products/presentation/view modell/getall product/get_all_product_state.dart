@@ -5,7 +5,6 @@ abstract class GetAllProductState {}
 
 final class GetAllProductInitial extends GetAllProductState {}
 
-
 class GetAllProductsLoading extends GetAllProductState {}
 
 class GetAllProductsSuccess extends GetAllProductState {

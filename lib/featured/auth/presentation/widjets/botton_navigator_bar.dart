@@ -11,9 +11,7 @@ class BottomNavigatorBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(
-        MediaQuery.of(context).size.width, 100.h
-      ),
+      size: Size(MediaQuery.of(context).size.width, 100.h),
       painter: AuthCustomPainter(
         gradient: LinearGradient(
           colors: [

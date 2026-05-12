@@ -1,12 +1,11 @@
 import 'package:astro/core/app/upload_image/model/upload_image_response.dart';
-import 'package:astro/core/services/graphql/api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadImageDataSource {
-  UploadImageDataSource(this._graphQl);
+  UploadImageDataSource(this._dio);
 
-  final ApiService _graphQl;
+  final Dio _dio;
 
   Future<UploadImageResponse> uploadImage({
     required XFile imageFile,
@@ -19,7 +18,10 @@ class UploadImageDataSource {
       ),
     );
 
-    final response = await _graphQl.uploadImage(formData);
-    return response;
+    final response = await _dio.post(
+      '/files/upload',
+      data: formData,
+    );
+    return UploadImageResponse.fromJson(response.data as Map<String, dynamic>);
   }
 }

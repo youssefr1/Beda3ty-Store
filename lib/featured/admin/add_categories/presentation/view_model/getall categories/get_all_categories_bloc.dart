@@ -13,7 +13,7 @@ class GetAllCategoriesBloc
   final CategoryRepository repository;
 
   GetAllCategoriesBloc({required this.repository})
-      : super(GetAllCategoriesInitial()) {
+    : super(GetAllCategoriesInitial()) {
     on<GetAllCategoriesEvent>(_onGetAllCategories);
     on<RemoveCategoryLocally>((event, emit) {
       if (state is GetAllCategoriesSuccsse) {
@@ -23,12 +23,12 @@ class GetAllCategoriesBloc
         emit(GetAllCategoriesSuccsse(updatedList));
       }
     });
-
   }
 
   Future<void> _onGetAllCategories(
-      GetAllCategoriesEvent event, Emitter<GetAllCategoriesState> emit) async {
-
+    GetAllCategoriesEvent event,
+    Emitter<GetAllCategoriesState> emit,
+  ) async {
     emit(GetAllCategoriesLoading()); // 1️⃣ أول حالة → تحميل
 
     try {

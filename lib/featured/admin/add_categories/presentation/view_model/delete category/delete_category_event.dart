@@ -7,4 +7,3 @@ class DeleteCategoriesEvent extends DeleteCategoryEvent {
   DeleteCategoriesEvent({required this.id});
   final int id;
 }
-

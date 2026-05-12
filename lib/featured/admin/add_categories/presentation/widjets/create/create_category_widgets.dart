@@ -1,11 +1,9 @@
 import 'package:astro/core/app/upload_image/cubit/upload_image_cubit.dart';
-import 'package:astro/core/common/bottom%20sheet/custom_bottom_sheet.dart';
 import 'package:astro/core/common/widjets/custom_button.dart';
 import 'package:astro/core/common/widjets/custom_text_field.dart';
 import 'package:astro/core/common/widjets/show_toast.dart';
 import 'package:astro/core/common/widjets/text_app.dart';
 import 'package:astro/core/extensions/context_extensions.dart';
-import 'package:astro/core/language/lang_keys.dart';
 import 'package:astro/core/styles/fonts/font_weight_helper.dart';
 import 'package:astro/featured/admin/add_categories/presentation/view_model/create%20categories/create_categories_bloc.dart';
 import 'package:astro/featured/admin/add_categories/presentation/view_model/getall%20categories/get_all_categories_bloc.dart';
@@ -18,19 +16,15 @@ class CreateCategoryWdjet extends StatefulWidget {
   const CreateCategoryWdjet({super.key});
 
   @override
-  State<CreateCategoryWdjet> createState() =>
-      _CreateCategoryWdjetState();
+  State<CreateCategoryWdjet> createState() => _CreateCategoryWdjetState();
 }
 
-class _CreateCategoryWdjetState
-    extends State<CreateCategoryWdjet> {
+class _CreateCategoryWdjetState extends State<CreateCategoryWdjet> {
   final formKey = GlobalKey<FormState>();
-  TextEditingController nameController =
-      TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   @override
   void dispose() {
-
     nameController.dispose();
     super.dispose();
   }
@@ -60,8 +54,7 @@ class _CreateCategoryWdjetState
               height: 20.h,
             ),
             Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextApp(
                   text: 'Add a photo',
@@ -74,14 +67,12 @@ class _CreateCategoryWdjetState
                 // remove Button image
                 BlocBuilder<UploadImageCubit, UploadImageState>(
                   builder: (context, state) {
-                    if (state is initial) {
-                       return SizedBox();
+                    if (state is UploadImageInitial) {
+                      return const SizedBox.shrink();
                     } else {
                       return CustomButton(
                         onPressed: () {
-                          context
-                              .read<UploadImageCubit>()
-                              .removeImage();
+                          context.read<UploadImageCubit>().removeImage();
                         },
                         text: 'Remove',
                         width: 120.w,
@@ -90,9 +81,9 @@ class _CreateCategoryWdjetState
                         threeRadius: 10,
                         backgroundColor: Colors.red,
                       );
-                    }}
-                    ,
-                  ),
+                    }
+                  },
+                ),
               ],
             ),
             SizedBox(
@@ -111,7 +102,7 @@ class _CreateCategoryWdjetState
                 fontFamily: 'Poppins',
               ),
             ),
-              // Category text feild name
+            // Category text feild name
             Padding(
               padding: EdgeInsets.symmetric(vertical: 15.h),
               child: CustomTextField(
@@ -122,16 +113,16 @@ class _CreateCategoryWdjetState
                   fontSize: 18,
                 ),
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      value == null ||
-                      value.length < 2) {
+                  if (value == null || value.isEmpty || value.length < 2) {
                     return 'please enter valid category name';
                   }
                   return null;
                 },
               ),
             ),
-            SizedBox(height: 15.h,),
+            SizedBox(
+              height: 15.h,
+            ),
 
             // Create Category Button
             BlocConsumer<CreateCategoriesBloc, CreateCategoriesState>(
@@ -144,62 +135,44 @@ class _CreateCategoryWdjetState
                   Navigator.pop(context);
                   context.read<GetAllCategoriesBloc>().add(CategoryEvent());
 
-
                   // 🧹 إعادة تعيين الحقول
                   nameController.clear();
                   context.read<UploadImageCubit>().removeImage();
-
-                  // 📦 إغلاق الـ BottomSheet إذا كنت تستخدمه
-
                 } else if (state is CreateCategoriesFailure) {
                   // ❌ في حالة الفشل
                   ShowToast.showToastErrorTop(
                     message: 'please try again',
                   );
                 }
-
               },
               builder: (context, state) {
-                 if (state is CreateCategoriesSuccess){
-                   final isLoading = state is CreateCategoriesLoading;
-                   return CustomButton(
-                     onPressed: (){
-                       isLoading ? null : _validCreateCategory(context);
-                     },
-                     text: isLoading ? 'Loading...' : 'Create a new category',
-                     width: MediaQuery.of(context).size.width,
-                     height: 50.h,
-                     threeRadius: 20,
-                     lastRadius: 20,
-                     backgroundColor: Colors.transparent,
-                   );
-                 }
-                 else if(state is CreateCategoriesLoading){
-                  return  Container(
+                if (state is CreateCategoriesLoading) {
+                  return Container(
                     height: 50.h,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Center(child: CircularProgressIndicator(
-                      color: context.color.bluePinkLight,
-                    ),),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: context.color.bluePinkLight,
+                      ),
+                    ),
                   );
-                 }else{
-                   return  CustomButton(
-                     onPressed: (){
-                       _validCreateCategory(context);
-                     },
-                     text: 'Create a new category',
-                     width: MediaQuery.of(context).size.width,
-                     height: 50.h,
-                     threeRadius: 20,
-                     lastRadius: 20,
-                     backgroundColor: Colors.green,
-                   );
-                 }
-
+                } else {
+                  return CustomButton(
+                    onPressed: () {
+                      _validCreateCategory(context);
+                    },
+                    text: 'Create a new category',
+                    width: MediaQuery.of(context).size.width,
+                    height: 50.h,
+                    threeRadius: 20,
+                    lastRadius: 20,
+                    backgroundColor: Colors.green,
+                  );
+                }
               },
             ),
           ],
@@ -228,5 +201,4 @@ class _CreateCategoryWdjetState
       ),
     );
   }
-
 }

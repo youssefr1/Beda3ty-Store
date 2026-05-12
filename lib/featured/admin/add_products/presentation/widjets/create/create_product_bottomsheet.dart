@@ -15,15 +15,11 @@ class CreateProductBottomsheet extends StatefulWidget {
       _CreateProductBottomsheetState();
 }
 
-class _CreateProductBottomsheetState
-    extends State<CreateProductBottomsheet> {
+class _CreateProductBottomsheetState extends State<CreateProductBottomsheet> {
   final fromKey = GlobalKey<FormState>();
-  TextEditingController titleControler =
-      TextEditingController();
-  TextEditingController priceController =
-      TextEditingController();
-  TextEditingController descriptionController =
-      TextEditingController();
+  TextEditingController titleControler = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   String? categoryName;
 
   @override
@@ -159,7 +155,7 @@ class _CreateProductBottomsheetState
                 height: 20.h,
               ),
               CustomCreateDropDown(
-                items: ['ahmed','sdasa'],
+                items: ['ahmed', 'sdasa'],
                 hintText: 'Select Category',
                 onChanged: (value) {
                   setState(() {
@@ -180,7 +176,6 @@ class _CreateProductBottomsheetState
                 width: MediaQuery.of(context).size.width,
                 height: 50.h,
               ),
-
             ],
           ),
         ),

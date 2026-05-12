@@ -1,10 +1,23 @@
 part of 'categories_number_bloc.dart';
 
-@freezed
- class CategoriesNumberState  with  _$CategoriesNumberState {
-  const factory CategoriesNumberState.succsse({required String categoryNumber}) = succsseState;
-  const factory CategoriesNumberState.loading() = loadingState;
-  const factory CategoriesNumberState.failure(String message) = failureState;
+abstract class CategoriesNumberState {
+  const CategoriesNumberState();
 }
 
+class CategoriesNumberInitial extends CategoriesNumberState {
+  const CategoriesNumberInitial();
+}
 
+class CategoriesNumberLoading extends CategoriesNumberState {
+  const CategoriesNumberLoading();
+}
+
+class CategoriesNumberSuccess extends CategoriesNumberState {
+  final String categoryNumber;
+  const CategoriesNumberSuccess({required this.categoryNumber});
+}
+
+class CategoriesNumberFailure extends CategoriesNumberState {
+  final String message;
+  const CategoriesNumberFailure(this.message);
+}

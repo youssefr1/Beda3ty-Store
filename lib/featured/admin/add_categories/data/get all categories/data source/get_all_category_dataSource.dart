@@ -1,5 +1,5 @@
+import 'package:astro/featured/admin/add_categories/data/get%20all%20categories/model/get_all_category_model.dart';
 import 'package:dio/dio.dart';
-import '../model/get_all_category_model.dart';
 
 abstract class GetAllCategoryDataSource {
   Future<List<CategoryModel>> getAllCategory();
@@ -8,69 +8,43 @@ abstract class GetAllCategoryDataSource {
 
 class GetAllCategoryDataSourceImpl implements GetAllCategoryDataSource {
   final Dio dio;
-  final String endPoint;
 
-  GetAllCategoryDataSourceImpl({
-    required this.dio,
-    required this.endPoint,
-  });
+  GetAllCategoryDataSourceImpl({required this.dio});
 
   @override
   Future<List<CategoryModel>> getAllCategory() async {
-    const query = r'''
-      query {
-        categories {
-          id
-          name
-          image
-        }
-      }
-    ''';
-
-    final response = await dio.post(
-      endPoint,
-      data: {"query": query},
-      options: Options(headers: {"Content-Type": "application/json"}),
-    );
-
-    final List<dynamic> data =
-    response.data['data']['categories'] as List<dynamic>;
-
-    // ✅ نحول الـ data إلى List من الموديل
-    final categories = data
-        .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
-        .toList();
-
-    // ✅ نرجعها بالعكس (أحدث عنصر أول)
-    return categories.reversed.toList();
-  }
-  Future<bool> deleteCategory(int id) async {
-    const String mutation = r'''
-    mutation DeleteCategory($id: ID!) {
-      deleteCategory(id: $id)
-    }
-  ''';
-
     try {
-      final response = await dio.post(
-        endPoint,
-        data: {
-          "query": mutation,
-          "variables": {"id": id},
-        },
-        options: Options(headers: {"Content-Type": "application/json"}),
-      );
+      final response = await dio.get('/categories');
 
-      print("🗑️ Delete Category Response: ${response.data}");
+      final data = response.data as List;
+      final categories = data
+          .map(
+            (category) =>
+                CategoryModel.fromJson(category as Map<String, dynamic>),
+          )
+          .toList();
 
-      if (response.data['errors'] != null) {
-        throw Exception(response.data['errors'][0]['message']);
-      }
-
-      return response.data['data']['deleteCategory'] == true;
+      return categories;
+    } on DioException catch (e) {
+      print("❌ DioException: \${e.response?.data}");
+      throw Exception(e.message);
     } catch (e) {
-      print("❌ Delete Category error: $e");
-      throw Exception('DeleteCategory DS error: $e');
+      print("❌ error : $e");
+      throw Exception('DS error: $e');
+    }
+  }
+
+  @override
+  Future<bool> deleteCategory(int id) async {
+    try {
+      final response = await dio.delete('/categories/$id');
+      return response.data == true || response.data.toString() == 'true';
+    } on DioException catch (e) {
+      print("❌ DioException: \${e.response?.data}");
+      throw Exception(e.message);
+    } catch (e) {
+      print("❌ error : $e");
+      throw Exception('DS delete error: $e');
     }
   }
 }

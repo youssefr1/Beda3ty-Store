@@ -25,9 +25,10 @@ class UpdateProductImages extends StatelessWidget {
                 color: Colors.grey.shade600,
                 borderRadius: BorderRadius.circular(15),
                 image: const DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage('https://i.imgur.com/ZANVnHE.jpeg')),
-              )
+                  fit: BoxFit.fill,
+                  image: NetworkImage('https://i.imgur.com/ZANVnHE.jpeg'),
+                ),
+              ),
             ),
 
             Container(

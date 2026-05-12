@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-
-
 class SlidingImage extends StatelessWidget {
   const SlidingImage({super.key, required this.slidingAnimationImage});
 

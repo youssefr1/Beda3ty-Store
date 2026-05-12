@@ -1,29 +1,28 @@
-import 'package:astro/core/services/graphql/admin/dashboard_quary.dart';
-import 'package:astro/core/services/graphql/api_service.dart';
-import 'package:astro/featured/admin/dashboard/data/models/categorie_number_response.dart';
-import 'package:astro/featured/admin/dashboard/data/models/product_number_response.dart';
-import 'package:astro/featured/admin/dashboard/data/models/users_number_response.dart';
+import 'package:dio/dio.dart';
 
 class DashBoardDataSource {
-  DashBoardDataSource(this.graph);
+  DashBoardDataSource(this.dio);
 
-  final ApiService graph;
+  final Dio dio;
 
-  Future<ProductNumberResponse> productNumber() async {
-    final response = await graph.productNumber(
-      DashboardQuery().numberOfProductsMapQuery(),
-    );
-    return response;
-  } Future<CategoriesNumberResponse>categoryNumber() async {
-    final response = await graph.categoriesNumber(
-      DashboardQuery().numberOfCategoriesMapQuery(),
-    );
-    return response;
-  } Future<UsersNumberResponse> userNumber() async {
-    final response = await graph.usersNumber(
-      DashboardQuery().numberOfUsersMapQuery(),
-    );
-    return response;
+  /// GET /api/v1/products → count
+  Future<int> productNumber() async {
+    final response = await dio.get('/products');
+    final data = response.data as List;
+    return data.length;
   }
 
+  /// GET /api/v1/categories → count
+  Future<int> categoryNumber() async {
+    final response = await dio.get('/categories');
+    final data = response.data as List;
+    return data.length;
+  }
+
+  /// GET /api/v1/users → count
+  Future<int> userNumber() async {
+    final response = await dio.get('/users');
+    final data = response.data as List;
+    return data.length;
+  }
 }

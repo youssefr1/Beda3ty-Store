@@ -11,7 +11,7 @@ class PageUnderBuildScreen extends StatelessWidget {
       body: Center(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          decoration:  const BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(AppImages.noNetwork),
               fit: BoxFit.fill,

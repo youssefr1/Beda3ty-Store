@@ -22,6 +22,4 @@ class ConnectivityControler {
 
     Connectivity().onConnectivityChanged.listen(updateConnectionStatus);
   }
-
-
 }

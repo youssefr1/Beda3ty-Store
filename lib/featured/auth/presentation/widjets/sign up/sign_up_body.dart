@@ -19,7 +19,7 @@ class SignUpBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
+    return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 20,
         vertical: 20,
@@ -54,12 +54,12 @@ class SignUpBody extends StatelessWidget {
               height: 30.h,
             ),
             // sign Up Button
-            const SignUpButton (),
+            const SignUpButton(),
             SizedBox(
               height: 30.h,
             ),
-           InkWell(
-              onTap: (){
+            InkWell(
+              onTap: () {
                 context.goRoute(AppRouter.login);
               },
               child: CustomFadeInUp(
@@ -72,13 +72,13 @@ class SignUpBody extends StatelessWidget {
                     fontSize: 18.sp,
                     color: context.color.bluePinkLight,
                     fontWeight: FontWeightHelper.medium,
-
                   ),
                 ),
               ),
             ),
           ],
         ),
-  ));
+      ),
+    );
   }
 }

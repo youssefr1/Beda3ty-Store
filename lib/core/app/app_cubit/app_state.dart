@@ -1,14 +1,19 @@
 part of 'app_cubit.dart';
 
-@freezed
-class AppState with _$AppState {
-  const factory AppState.initial() = _Initial;
+abstract class AppState {
+  const AppState();
+}
 
-  const factory AppState.themeChangeMode({
-    required bool isDark,
-  }) = ThemeChangeModeState;
+class AppInitial extends AppState {
+  const AppInitial();
+}
 
-  const factory AppState.languageChangeMode({
-    required Locale locale,
-  }) = LanguageChangeModeState;
+class ThemeChangeModeState extends AppState {
+  final bool isDark;
+  const ThemeChangeModeState({required this.isDark});
+}
+
+class LanguageChangeModeState extends AppState {
+  final Locale locale;
+  const LanguageChangeModeState({required this.locale});
 }

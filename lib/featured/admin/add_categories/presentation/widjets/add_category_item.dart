@@ -38,7 +38,6 @@ class AddCategoryItem extends StatelessWidget {
           );
           // 🌀 نعمل Refresh للبيانات بعد الحذف
           context.read<GetAllCategoriesBloc>().add(CategoryEvent());
-
         } else if (state is DeleteCategoryFailure) {
           ShowToast.showToastErrorTop(
             message: state.error,
@@ -95,8 +94,12 @@ class AddCategoryItem extends StatelessWidget {
                               context: context,
                               widjet: MultiBlocProvider(
                                 providers: [
-                                  BlocProvider(create: (_) => sl<UpdateCategoryBloc>()),
-                                  BlocProvider(create: (_) => sl<UploadImageCubit>()),
+                                  BlocProvider(
+                                    create: (_) => sl<UpdateCategoryBloc>(),
+                                  ),
+                                  BlocProvider(
+                                    create: (_) => sl<UploadImageCubit>(),
+                                  ),
                                 ],
                                 child: UpdateCategoryButton(
                                   categoryId: int.parse(categoryId),
@@ -108,7 +111,9 @@ class AddCategoryItem extends StatelessWidget {
 
                             // ✅ بعد الخروج من البوتوم شيت نعمل Refresh تلقائي
                             if (context.mounted) {
-                              context.read<GetAllCategoriesBloc>().add(CategoryEvent());
+                              context.read<GetAllCategoriesBloc>().add(
+                                CategoryEvent(),
+                              );
                             }
                           },
                           icon: const Icon(

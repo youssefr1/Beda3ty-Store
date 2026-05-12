@@ -1,9 +1,8 @@
-class PrefKeys{
-  static const String themeMode='mode';
-  static const String languageMode='lang';
-  static const String accessToken='accessToken';
-  static const String refreshToken='accessToken';
-  static const String userId ='id';
-  static const String userRole ='userRole';
-
+class PrefKeys {
+  static const String themeMode = 'mode';
+  static const String languageMode = 'lang';
+  static const String accessToken = 'accessToken';
+  static const String refreshToken = 'accessToken';
+  static const String userId = 'id';
+  static const String userRole = 'userRole';
 }

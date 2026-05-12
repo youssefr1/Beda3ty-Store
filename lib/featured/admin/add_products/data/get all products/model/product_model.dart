@@ -1,5 +1,4 @@
 class CategoryModel {
-
   CategoryModel({
     required this.id,
     required this.name,
@@ -19,7 +18,6 @@ class CategoryModel {
 }
 
 class ProductModel {
-
   ProductModel({
     required this.id,
     required this.title,
@@ -35,11 +33,11 @@ class ProductModel {
       title: json["title"] as String? ?? "",
       price: json["price"] as num? ?? 0,
       description: json["description"] as String? ?? "",
-      category: CategoryModel.fromJson(json["category"] as Map<String, dynamic>? ?? {}),
-      images: (json["images"] as List?)
-          ?.map((e) => e.toString())
-          .toList()
-          ?? [],
+      category: CategoryModel.fromJson(
+        json["category"] as Map<String, dynamic>? ?? {},
+      ),
+      images:
+          (json["images"] as List?)?.map((e) => e.toString()).toList() ?? [],
     );
   }
   final int id;

@@ -1,7 +1,13 @@
 part of 'products_number_bloc.dart';
 
-@freezed
-sealed class ProductsNumberEvent with _$ProductsNumberEvent {
-  const factory ProductsNumberEvent.Start() = _start;
-  const factory ProductsNumberEvent.getProductNumber() = getProductNumber;
+abstract class ProductsNumberEvent {
+  const ProductsNumberEvent();
+}
+
+class ProductsNumberStart extends ProductsNumberEvent {
+  const ProductsNumberStart();
+}
+
+class GetProductsNumber extends ProductsNumberEvent {
+  const GetProductsNumber();
 }

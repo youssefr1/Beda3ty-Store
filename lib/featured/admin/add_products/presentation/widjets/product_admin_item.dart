@@ -15,7 +15,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ProductAdminItem extends StatelessWidget {
   const ProductAdminItem({
     required this.imageUrl,
-    required this.title, required this.categoryName, required this.price, super.key,
+    required this.title,
+    required this.categoryName,
+    required this.price,
+    super.key,
   });
 
   final String imageUrl;
@@ -35,8 +38,7 @@ class ProductAdminItem extends StatelessWidget {
           children: [
             // delete button and Update Button in the Row
             Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //Delete Button
                 IconButton(
@@ -52,7 +54,7 @@ class ProductAdminItem extends StatelessWidget {
                   onPressed: () {
                     CustomBottomSheet.showModelBottomSheetContainer(
                       context: context,
-                      widjet:const UpdateProductBottomsheet() ,
+                      widjet: const UpdateProductBottomsheet(),
                     );
                   },
                   padding: EdgeInsets.zero,
@@ -81,7 +83,9 @@ class ProductAdminItem extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 8.h,),
+            SizedBox(
+              height: 8.h,
+            ),
             // title
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -96,8 +100,9 @@ class ProductAdminItem extends StatelessWidget {
               ),
             ),
 
-
-            SizedBox(height: 7.h,),
+            SizedBox(
+              height: 7.h,
+            ),
             // category name
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -112,7 +117,6 @@ class ProductAdminItem extends StatelessWidget {
               ),
             ),
 
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: TextApp(
@@ -125,7 +129,9 @@ class ProductAdminItem extends StatelessWidget {
                 maxLines: 1,
               ),
             ),
-            SizedBox(height: 10.h,),
+            SizedBox(
+              height: 10.h,
+            ),
           ],
         ),
       ),

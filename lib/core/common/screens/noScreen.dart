@@ -15,8 +15,14 @@ class NoScreenScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.hourglass_empty_rounded,size: 150,color: context.color.textColor),
-            SizedBox(height: 15,),
+            Icon(
+              Icons.hourglass_empty_rounded,
+              size: 150,
+              color: context.color.textColor,
+            ),
+            SizedBox(
+              height: 15,
+            ),
             TextApp(
               text: 'No data ',
               theme: context.textStyle.copyWith(

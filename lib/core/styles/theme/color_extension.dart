@@ -1,4 +1,3 @@
-
 import 'package:astro/core/styles/colors/colors_dark.dart';
 import 'package:astro/core/styles/colors/colors_light.dart';
 import 'package:flutter/material.dart';

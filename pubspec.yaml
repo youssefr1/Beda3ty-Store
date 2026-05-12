@@ -55,15 +55,10 @@ dependencies:
   #Shared pref
   shared_preferences: ^2.5.3
 
-  #freezed
-  freezed_annotation: ^2.4.1
-  freezed: ^2.4.6
 
   #Api
   dio: ^5.9.0
   pretty_dio_logger: ^1.4.0
-  retrofit: ^4.7.2
-  retrofit_generator: ^9.7.0
 
   #Image Picker
   image_picker: ^1.2.0
@@ -76,6 +71,11 @@ dependencies:
   cached_network_image: ^3.4.1
   # router
   go_router: ^14.0.1
+  firebase_messaging: ^16.2.0
+  googleapis_auth: ^2.0.0
+  http: ^1.6.0
+  flutter_local_notifications: 17.2.4
+  intl: ^0.20.2
 
 
 
@@ -103,8 +103,6 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   very_good_analysis: ^9.0.0
   flutter_launcher_icons: ^0.14.4
-  build_runner: ^2.4.8
-  json_serializable: ^6.9.5
 
 
 flutter_launcher_icons:
@@ -133,6 +131,7 @@ flutter:
      - assets/assets/images/admin/
      - lang/ar.json
      - lang/en.json
+     - beda3ty-store-firebase-adminsdk-fbsvc-1900593684.json
 
 
   fonts:

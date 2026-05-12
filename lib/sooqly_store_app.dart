@@ -12,23 +12,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:astro/featured/customer/cubit/notification_cubit.dart';
+
 class SooqlyStoreApp extends StatelessWidget {
   const SooqlyStoreApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-      valueListenable:
-      ConnectivityControler.instance.isConected,
+      valueListenable: ConnectivityControler.instance.isConected,
       builder: (context, isConnected, _) {
-        return BlocProvider(
-          create: (context) =>
-          sl<AppCubit>()
-            ..changeAppThemeMode(
-              sharedMode: SharedPref().getBoolean(
-                PrefKeys.themeMode,
-              ),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => sl<AppCubit>()
+                ..changeAppThemeMode(
+                  sharedMode: SharedPref().getBoolean(
+                    PrefKeys.themeMode,
+                  ),
+                ),
             ),
+            BlocProvider(
+              create: (context) => sl<NotificationCubit>(),
+            ),
+          ],
           child: ScreenUtilInit(
             designSize: const Size(375, 812),
             // غير الأبعاد حسب التصميم بتاعك (Figma)
@@ -36,28 +43,24 @@ class SooqlyStoreApp extends StatelessWidget {
             splitScreenMode: true,
             builder: (context, child) {
               return BlocBuilder<AppCubit, AppState>(
-                buildWhen:(previous, current) {
+                buildWhen: (previous, current) {
                   return previous != current;
-                } ,
+                },
                 builder: (context, state) {
                   final cubit = context.read<AppCubit>();
                   return MaterialApp.router(
-
                     // theme section
-                    theme: cubit.isDark ? themeLight(): themeDark(),
+                    theme: cubit.isDark ? themeLight() : themeDark(),
                     // language section
-                    locale:  Locale(cubit.currentLanguage),
-                    supportedLocales:
-                    AppLocalizationsSetup.supportedLocales,
+                    locale: Locale(cubit.currentLanguage),
+                    supportedLocales: AppLocalizationsSetup.supportedLocales,
                     localizationsDelegates:
-                    AppLocalizationsSetup
-                        .localizationsDelegates,
+                        AppLocalizationsSetup.localizationsDelegates,
                     localeResolutionCallback:
-                    AppLocalizationsSetup
-                        .localeResolutionCallback,
+                        AppLocalizationsSetup.localeResolutionCallback,
                     debugShowCheckedModeBanner: false,
                     // route section
-                    routerConfig:AppRouter.router,
+                    routerConfig: AppRouter.router,
                     builder: (context, child) {
                       if (!isConnected) {
                         return const NoNetworkScreen();
@@ -74,5 +77,3 @@ class SooqlyStoreApp extends StatelessWidget {
     );
   }
 }
-
-

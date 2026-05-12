@@ -25,16 +25,14 @@ class AuthRepos {
     }
   }
 
-
-
-
   Future<UserRoleResponse> userRole(String token) async {
-      final response = await _authDataSource.getUserRole(token);
-       return response;
+    final response = await _authDataSource.getUserRole(token);
+    return response;
   }
 
-
-  Future<ApiResult<SignUpResponse>> signUp({required SignUpRequest body,})async{
+  Future<ApiResult<SignUpResponse>> signUp({
+    required SignUpRequest body,
+  }) async {
     try {
       final response = await _authDataSource.signUp(body: body);
       return ApiResult.success(response);

@@ -15,13 +15,12 @@ class SignUpTextForm extends StatefulWidget {
   const SignUpTextForm({super.key});
 
   @override
-  State<SignUpTextForm> createState() =>
-      _SignUpTextFormState();
+  State<SignUpTextForm> createState() => _SignUpTextFormState();
 }
 
 class _SignUpTextFormState extends State<SignUpTextForm> {
   bool isShowPassword = true;
-late AuthBloc _bloc;
+  late AuthBloc _bloc;
   @override
   void dispose() {
     // مهم جدًا تنظفهم
@@ -31,10 +30,10 @@ late AuthBloc _bloc;
     _bloc.password.dispose();
     super.dispose();
   }
+
   initState() {
     super.initState();
     _bloc = context.read<AuthBloc>();
-
   }
 
   @override
@@ -73,8 +72,8 @@ late AuthBloc _bloc;
           CustomFadeInRight(
             duration: 600,
             child: CustomTextField(
-              validator: (value){
-                if(!AppRegex.isEmailValid(_bloc.email.text)){
+              validator: (value) {
+                if (!AppRegex.isEmailValid(_bloc.email.text)) {
                   return context.translate(LangKeys.validEmail);
                 }
               },
@@ -120,14 +119,12 @@ late AuthBloc _bloc;
                 fontWeight: FontWeightHelper.medium,
               ),
               controller: _bloc.password,
-    validator: (value) {
-    if (!AppRegex.isPasswordValid(value ?? "")) {
-    return context.translate(LangKeys.validPasswrod);
-    }
-    return null;
-    },
-
-
+              validator: (value) {
+                if (!AppRegex.isPasswordValid(value ?? "")) {
+                  return context.translate(LangKeys.validPasswrod);
+                }
+                return null;
+              },
             ),
           ),
         ],

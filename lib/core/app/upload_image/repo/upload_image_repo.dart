@@ -9,14 +9,12 @@ class UploadImageRepo {
 
   final UploadImageDataSource _dataSource;
 
-  Future<ApiResult<UploadImageResponse>> uploadImage(XFile file)
-  async{
+  Future<ApiResult<UploadImageResponse>> uploadImage(XFile file) async {
     try {
       final response = await _dataSource.uploadImage(imageFile: file);
       return ApiResult.success(response);
     } catch (e) {
       return const ApiResult.failure(LangKeys.loggedError);
     }
-
   }
 }

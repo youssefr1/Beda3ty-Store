@@ -7,9 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AuthTitleInfo extends StatelessWidget {
-  const AuthTitleInfo({required this.title, required this.description, super.key});
-    final String title;
-    final String description;
+  const AuthTitleInfo({
+    required this.title,
+    required this.description,
+    super.key,
+  });
+  final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +27,19 @@ class AuthTitleInfo extends StatelessWidget {
             theme: context.textStyle.copyWith(
               fontSize: 24.sp,
               fontWeight: FontWeightHelper.bold,
-              color: context.color.textColor
-
+              color: context.color.textColor,
             ),
           ),
-           SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           TextApp(
             text: description,
             textAlign: TextAlign.center,
             theme: context.textStyle.copyWith(
               fontSize: 20.sp,
-              fontWeight:  FontWeightHelper.medium,
-              color: context.color.textColor
+              fontWeight: FontWeightHelper.medium,
+              color: context.color.textColor,
             ),
           ),
         ],

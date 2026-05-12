@@ -1,10 +1,23 @@
 part of 'products_number_bloc.dart';
 
-@freezed
- class ProductsNumberState with _$ProductsNumberState {
-  const factory ProductsNumberState.succsse({required String productNumber}) = succsseState;
-  const factory ProductsNumberState.loading() = loadingState;
-  const factory ProductsNumberState.failure(String message) = failureState;
+abstract class ProductsNumberState {
+  const ProductsNumberState();
 }
 
+class ProductsNumberInitial extends ProductsNumberState {
+  const ProductsNumberInitial();
+}
 
+class ProductsNumberLoading extends ProductsNumberState {
+  const ProductsNumberLoading();
+}
+
+class ProductsNumberSuccess extends ProductsNumberState {
+  final String productNumber;
+  const ProductsNumberSuccess({required this.productNumber});
+}
+
+class ProductsNumberFailure extends ProductsNumberState {
+  final String message;
+  const ProductsNumberFailure(this.message);
+}

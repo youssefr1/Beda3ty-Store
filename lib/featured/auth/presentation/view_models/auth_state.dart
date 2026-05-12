@@ -1,11 +1,23 @@
 part of 'auth_bloc.dart';
 
-@freezed
- class AuthState with _$AuthState{
-  const factory AuthState.initial() = _Initial;
-  const factory AuthState.loading() = LoadingState;
-  const factory AuthState.success({required String userRole}) = SuccessState;
-  const factory AuthState.failure({required String errmessage}) = FailureState;
+abstract class AuthState {
+  const AuthState();
 }
 
+class AuthInitial extends AuthState {
+  const AuthInitial();
+}
 
+class AuthLoading extends AuthState {
+  const AuthLoading();
+}
+
+class AuthSuccess extends AuthState {
+  final String userRole;
+  const AuthSuccess({required this.userRole});
+}
+
+class AuthFailure extends AuthState {
+  final String errmessage;
+  const AuthFailure({required this.errmessage});
+}

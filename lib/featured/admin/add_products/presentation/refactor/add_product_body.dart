@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
 class AddProductBody extends StatelessWidget {
   const AddProductBody({super.key});
 
@@ -46,12 +44,12 @@ class AddProductBody extends StatelessWidget {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: products.length,
                             gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 15,
-                              childAspectRatio: 165 / 250,
-                            ),
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 8,
+                                  mainAxisSpacing: 15,
+                                  childAspectRatio: 165 / 250,
+                                ),
                             itemBuilder: (context, index) {
                               final product = products[index];
 

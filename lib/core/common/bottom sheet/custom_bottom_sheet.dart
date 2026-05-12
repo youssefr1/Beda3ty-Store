@@ -18,8 +18,7 @@ class CustomBottomSheet {
         ),
       ),
       context: context,
-      backgroundColor:
-          backgroundColor ?? context.color.bluePinkDark,
+      backgroundColor: backgroundColor ?? context.color.bluePinkDark,
       isScrollControlled: true,
       barrierColor: Colors.transparent,
       builder: (context) {
@@ -30,13 +29,13 @@ class CustomBottomSheet {
                 context,
               ).viewInsets.bottom,
             ),
-            child:Container(
+            child: Container(
               padding: const EdgeInsets.all(20),
               child: widjet,
             ),
           ),
         );
       },
-    ).whenComplete(whenComplete ?? (){});
+    ).whenComplete(whenComplete ?? () {});
   }
 }

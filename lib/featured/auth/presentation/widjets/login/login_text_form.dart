@@ -16,27 +16,23 @@ class LoginTextForm extends StatefulWidget {
   const LoginTextForm({super.key});
 
   @override
-  State<LoginTextForm> createState() =>
-      _LoginTextFormState();
+  State<LoginTextForm> createState() => _LoginTextFormState();
 }
 
 class _LoginTextFormState extends State<LoginTextForm> {
   @override
   bool isShowPassword = true;
-  late AuthBloc _bloc ;
-@override
+  late final AuthBloc _bloc;
+
+  @override
   void initState() {
-  WidgetsBinding.instance.addPostFrameCallback((_) {
+    super.initState();
     _bloc = context.read<AuthBloc>();
-    setState(() {}); // عشان يتحدث بعد ما ناخد الـ bloc
-  });
-super.initState();
   }
+
   // controllers ثابتة
-  final TextEditingController emailController =
-      TextEditingController();
-  final TextEditingController passwordController =
-      TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
@@ -45,7 +41,6 @@ super.initState();
     passwordController.dispose();
     super.dispose();
   }
-
 
   Widget build(BuildContext context) {
     return Form(
@@ -70,8 +65,7 @@ super.initState();
                   return "Please enter a valid email";
                 }
                 return null; // صح
-              }
-              ,
+              },
             ),
           ),
           SizedBox(
@@ -89,7 +83,8 @@ super.initState();
                 },
                 icon: Icon(
                   isShowPassword
-                      ? Icons.visibility_rounded // لما الباسورد مخفي   Icons.visibility_rounded
+                      ? Icons
+                            .visibility_rounded // لما الباسورد مخفي   Icons.visibility_rounded
                       : Icons.visibility_off_rounded,
                   // لما الباسورد ظاهر
                   color: isShowPassword
@@ -107,9 +102,7 @@ super.initState();
               ),
               controller: _bloc.password,
               validator: (value) {
-                if (value == null ||
-                    value.isEmpty ||
-                    value.length < 8) {
+                if (value == null || value.isEmpty || value.length < 8) {
                   return context.translate(
                     LangKeys.validPasswrod,
                   );

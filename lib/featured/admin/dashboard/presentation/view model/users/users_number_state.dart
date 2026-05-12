@@ -1,9 +1,23 @@
 part of 'users_number_bloc.dart';
 
-@freezed
- class UsersNumberState with _$UsersNumberState {
-  const factory UsersNumberState.succsse({required String userNumber}) = succsseState;
-  const factory UsersNumberState.loading() = loadingState;
-  const factory UsersNumberState.failure(String message) = failureState;
+abstract class UsersNumberState {
+  const UsersNumberState();
 }
 
+class UsersNumberInitial extends UsersNumberState {
+  const UsersNumberInitial();
+}
+
+class UsersNumberLoading extends UsersNumberState {
+  const UsersNumberLoading();
+}
+
+class UsersNumberSuccess extends UsersNumberState {
+  final String userNumber;
+  const UsersNumberSuccess({required this.userNumber});
+}
+
+class UsersNumberFailure extends UsersNumberState {
+  final String message;
+  const UsersNumberFailure(this.message);
+}

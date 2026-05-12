@@ -11,7 +11,8 @@ class AddCategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create:  (context) => sl<GetAllCategoriesBloc>()..add(CategoryEvent()),
+    return BlocProvider(
+      create: (context) => sl<GetAllCategoriesBloc>()..add(CategoryEvent()),
       child: const Scaffold(
         appBar: CustomAdminAppbar(
           isMain: true,

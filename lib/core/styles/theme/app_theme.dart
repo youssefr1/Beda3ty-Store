@@ -20,8 +20,7 @@ ThemeData themeDark() {
       displaySmall: TextStyle(
         fontSize: 14,
         color: ColorsDark.white,
-        fontFamily:
-        FontFamilyHelper.geLocalizationFontFamily(),
+        fontFamily: FontFamilyHelper.geLocalizationFontFamily(),
       ),
     ),
   );
@@ -38,12 +37,12 @@ ThemeData themeLight() {
     colorScheme: ColorScheme.fromSeed(
       seedColor: ColorsLight.mainColor,
     ),
-      textTheme:  TextTheme(
-          displaySmall: TextStyle(
-              fontSize: 14,
-              color: ColorsLight.black,
-              fontFamily: FontFamilyHelper.geLocalizationFontFamily()
-          )
-      )
+    textTheme: TextTheme(
+      displaySmall: TextStyle(
+        fontSize: 14,
+        color: ColorsLight.black,
+        fontFamily: FontFamilyHelper.geLocalizationFontFamily(),
+      ),
+    ),
   );
 }

@@ -42,27 +42,31 @@ class DashboardContainer extends StatelessWidget {
                     theme: context.textStyle.copyWith(
                       fontSize: 26.sp,
                       fontWeight: FontWeight.bold,
-                      fontFamily: FontFamilyHelper.poppinsEnglish
+                      fontFamily: FontFamilyHelper.poppinsEnglish,
                     ),
                   ),
                   const Spacer(),
-                  if(isLoaidng)
-                    LoadingShimmer(height:  30.h,width: 60.w,)
-                    else
-                  TextApp(
-                    text: number,
-                    theme: context.textStyle.copyWith(
+                  if (isLoaidng)
+                    LoadingShimmer(
+                      height: 30.h,
+                      width: 60.w,
+                    )
+                  else
+                    TextApp(
+                      text: number,
+                      theme: context.textStyle.copyWith(
                         fontSize: 26.sp,
                         fontWeight: FontWeight.bold,
-                        fontFamily: FontFamilyHelper.poppinsEnglish
+                        fontFamily: FontFamilyHelper.poppinsEnglish,
+                      ),
                     ),
-                  ),
                   const Spacer(),
-
                 ],
               ),
-              SizedBox(height: 90.h,
-              child: Image.asset(image),)
+              SizedBox(
+                height: 90.h,
+                child: Image.asset(image),
+              ),
             ],
           ),
         ),

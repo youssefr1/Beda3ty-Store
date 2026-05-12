@@ -60,7 +60,9 @@ class UsersView extends StatelessWidget {
                         user: state.users[index],
                         onDelete: () {
                           // Confirm delete dialog could be added here
-                          context.read<UsersCubit>().deleteUser(state.users[index].id);
+                          context.read<UsersCubit>().deleteUser(
+                            state.users[index].id,
+                          );
                         },
                       );
                     },

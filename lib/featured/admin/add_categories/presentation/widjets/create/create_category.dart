@@ -35,19 +35,20 @@ class CreateCategory extends StatelessWidget {
         CustomFadeInLeft(
           duration: 400,
           child: CustomButton(
-            onPressed: () async{
-
+            onPressed: () async {
               await CustomBottomSheet.showModelBottomSheetContainer(
                 context: context,
                 widjet: MultiBlocProvider(
                   providers: [
-                    BlocProvider(create: (context) => sl<CreateCategoriesBloc>()),
+                    BlocProvider(
+                      create: (context) => sl<CreateCategoriesBloc>(),
+                    ),
                     BlocProvider(create: (context) => sl<UploadImageCubit>()),
                   ],
                   child: const CreateCategoryWdjet(),
                 ),
               );
-                // ✅ بعد ما يتقفل الـ BottomSheet، نعمل refresh
+              // ✅ بعد ما يتقفل الـ BottomSheet، نعمل refresh
               context.read<GetAllCategoriesBloc>().add(CategoryEvent());
             },
             text: 'Add',

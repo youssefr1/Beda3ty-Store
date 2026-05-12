@@ -7,10 +7,9 @@ import 'package:astro/core/services/shared_pref/pref_keys.dart';
 import 'package:astro/core/services/shared_pref/shared_pref.dart';
 import 'package:astro/core/styles/fonts/font_family_helper.dart';
 import 'package:astro/featured/admin/add_categories/presentation/veiws/add_categories_view.dart';
-import 'package:astro/featured/admin/add_notifications/presentation/veiws/add_notifications_view.dart';
 import 'package:astro/featured/admin/add_products/presentation/veiws/add_products_view.dart';
 import 'package:astro/featured/admin/dashboard/presentation/veiws/dashboard_view.dart';
-import 'package:astro/featured/admin/notifications/presentation/views/notifications_view.dart';
+import 'package:astro/featured/admin/notifications/presentation/veiws/notifications_view.dart';
 import 'package:astro/featured/admin/users/presentation/views/users_view.dart';
 import 'package:astro/featured/auth/presentation/views/login_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 List<DrawerItemModel> adminDrwaerList(
-    BuildContext context,) {
+  BuildContext context,
+) {
   return <DrawerItemModel>[
     //DashBoard
     DrawerItemModel(
@@ -34,7 +34,6 @@ List<DrawerItemModel> adminDrwaerList(
           fontWeight: FontWeight.w500,
           fontFamily: FontFamilyHelper.poppinsEnglish,
         ),
-
       ),
       page: const DashboardView(),
     ),
@@ -52,7 +51,6 @@ List<DrawerItemModel> adminDrwaerList(
           fontWeight: FontWeight.w500,
           fontFamily: FontFamilyHelper.poppinsEnglish,
         ),
-
       ),
       page: const AddCategoriesView(),
     ),
@@ -70,7 +68,6 @@ List<DrawerItemModel> adminDrwaerList(
           fontWeight: FontWeight.w500,
           fontFamily: FontFamilyHelper.poppinsEnglish,
         ),
-
       ),
       page: const AddProductsView(),
     ),
@@ -88,27 +85,25 @@ List<DrawerItemModel> adminDrwaerList(
           fontWeight: FontWeight.w500,
           fontFamily: FontFamilyHelper.poppinsEnglish,
         ),
-
       ),
       page: const UsersView(),
     ),
-    // notifcation
+    // Notifications
     DrawerItemModel(
       icon: const Icon(
-        Icons.notification_add,
+        Icons.notifications_active,
         color: Colors.white,
       ),
       title: TextApp(
-        text: 'Notifcation',
+        text: 'Notifications',
         theme: context.textStyle.copyWith(
           fontSize: 17.sp,
           color: Colors.white,
           fontWeight: FontWeight.w500,
           fontFamily: FontFamilyHelper.poppinsEnglish,
         ),
-
       ),
-      page:const NotificationsView(),
+      page: const NotificationsView(),
     ),
     DrawerItemModel(
       icon: const Icon(
@@ -117,21 +112,20 @@ List<DrawerItemModel> adminDrwaerList(
       ),
       title: GestureDetector(
         onTap: () {
-          CustomDialog.twoButtonDialog(context: context,
-              textBody: context.translate(
-                  LangKeys.logOutFromApp),
-              textButton1: context.translate(
-                  LangKeys.yes),
-              textButton2: context.translate(
-                  LangKeys.no),
+          CustomDialog.twoButtonDialog(
+            context: context,
+            textBody: context.translate(LangKeys.logOutFromApp),
+            textButton1: context.translate(LangKeys.yes),
+            textButton2: context.translate(LangKeys.no),
 
-              onPressed:()async{
+            onPressed: () async {
               await SharedPref().removePreference(PrefKeys.accessToken);
               await SharedPref().removePreference(PrefKeys.refreshToken);
               await SharedPref().removePreference(PrefKeys.userRole);
-               context.goRoute(AppRouter.login);
-              },
-              isLoading: false);
+              context.goRoute(AppRouter.login);
+            },
+            isLoading: false,
+          );
         },
         child: TextApp(
           text: 'Logout',
@@ -141,12 +135,10 @@ List<DrawerItemModel> adminDrwaerList(
             fontWeight: FontWeight.w500,
             fontFamily: FontFamilyHelper.poppinsEnglish,
           ),
-
         ),
       ),
       page: const LoginView(),
     ),
-
   ];
 }
 

@@ -1,9 +1,11 @@
 class AppImages {
   //Images
   static const noNetwork = 'assets/assets/images/core/no_network.jpg';
-  static const pageUnderBuild = 'assets/assets/images/core/page_under_build.jpg';
+  static const pageUnderBuild =
+      'assets/assets/images/core/page_under_build.jpg';
   static const emptyScreen = 'assets/assets/images/core/empty_screen.png';
-  static const laptop ='assets/assets/images/core/maxim-hopman-Hin-rzhOdWs-unsplash.jpg';
+  static const laptop =
+      'assets/assets/images/core/maxim-hopman-Hin-rzhOdWs-unsplash.jpg';
 
   // Customer
   static const userAvatar = 'assets/assets/images/customer/user.png';
@@ -16,8 +18,10 @@ class AppImages {
 
   // Admin
   static const drawerImage = 'assets/assets/images/admin/drawer_image.png';
-  static const categoriesDrawer = 'assets/assets/images/admin/categories_drawer.png';
-  static const productsDrawer = 'assets/assets/images/admin/products_drawer.png';
+  static const categoriesDrawer =
+      'assets/assets/images/admin/categories_drawer.png';
+  static const productsDrawer =
+      'assets/assets/images/admin/products_drawer.png';
   static const usersDrawer = 'assets/assets/images/admin/users_drawer.png';
 
   //Svg

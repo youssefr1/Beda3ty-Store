@@ -2,7 +2,6 @@ import 'package:astro/core/language/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 class AppLocalizationsSetup {
   static const Iterable<Locale> supportedLocales = [
     Locale('en'),
@@ -11,12 +10,12 @@ class AppLocalizationsSetup {
 
   static const Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates =
       [
-    AppLocalizations.delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    DefaultCupertinoLocalizations.delegate,
-  ];
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        DefaultCupertinoLocalizations.delegate,
+      ];
 
   static Locale? localeResolutionCallback(
     Locale? locale,

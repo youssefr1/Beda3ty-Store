@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
-class CustomAdminAppbar extends StatelessWidget
-    implements PreferredSizeWidget {
+class CustomAdminAppbar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAdminAppbar({
     super.key,
     required this.isMain,
@@ -32,12 +31,14 @@ class CustomAdminAppbar extends StatelessWidget
           fontFamily: FontFamilyHelper.poppinsEnglish,
         ),
       ),
-      leading: isMain? IconButton(
-        onPressed: () {
-          ZoomDrawer.of(context)!.toggle();
-        },
-        icon: Icon(Icons.menu, color: Colors.white),
-      ):SizedBox.shrink(),
+      leading: isMain
+          ? IconButton(
+              onPressed: () {
+                ZoomDrawer.of(context)!.toggle();
+              },
+              icon: Icon(Icons.menu, color: Colors.white),
+            )
+          : SizedBox.shrink(),
     );
   }
 

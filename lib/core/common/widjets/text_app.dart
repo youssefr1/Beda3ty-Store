@@ -23,9 +23,9 @@ class TextApp extends StatelessWidget {
       text,
       softWrap: false,
       style: theme,
-      overflow: textOverflow ??TextOverflow.ellipsis,
+      overflow: textOverflow ?? TextOverflow.ellipsis,
       textAlign: textAlign,
-      maxLines: maxLines??1,
+      maxLines: maxLines ?? 1,
     );
   }
 }

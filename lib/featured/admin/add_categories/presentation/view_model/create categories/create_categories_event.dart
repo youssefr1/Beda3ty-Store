@@ -2,8 +2,8 @@ part of 'create_categories_bloc.dart';
 
 @immutable
 abstract class CreateCategoriesEvent {}
-class SubmitCreateCategory extends CreateCategoriesEvent {
 
+class SubmitCreateCategory extends CreateCategoriesEvent {
   SubmitCreateCategory({
     required this.name,
     required this.image,

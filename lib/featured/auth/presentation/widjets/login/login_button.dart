@@ -20,73 +20,72 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        state.whenOrNull(
-          success: (userRole) {
-            ShowToast.showToastSuccessTop(
-              message: context.translate(
-                LangKeys.loggedSuccessfully,
-              ),
-            );
-            if (userRole == 'admin') {
-              context.goRoute(AppRouter.homeAdmin);
-            } else {
-              context.goRoute(AppRouter.homeCustomer);
-            }
-          },
-          failure: (message) {
-            ShowToast.showToastErrorTop(
-              message:message,
-            );
-          },
-        );
+        if (state is AuthSuccess) {
+          ShowToast.showToastSuccessTop(
+            message: context.translate(
+              LangKeys.loggedSuccessfully,
+            ),
+          );
+          if (state.userRole.toLowerCase() == 'admin') {
+            context.goRoute(AppRouter.homeAdmin);
+          } else {
+            context.goRoute(AppRouter.homeCustomer);
+          }
+        } else if (state is AuthFailure) {
+          ShowToast.showToastErrorTop(
+            message: state.errmessage,
+          );
+        }
       },
       builder: (context, state) {
-        return state.maybeWhen(
-          loading: () {
-            // بعد 10 ثواني نتاكد لو لسه Loading -> نعرض Error
-            Future.delayed(const Duration(seconds: 10), () {
-              final bloc = context.read<AuthBloc>();
-              if (bloc.state is LoadingState) {
-                bloc.add(const AuthEvent.cancelLoading()); // ✅ ده هيحوّل الحالة لـ failure
-              }
-            });
+        if (state is AuthLoading) {
+          // بعد 10 ثواني نتاكد لو لسه Loading -> نعرض Error
+          Future.delayed(const Duration(seconds: 10), () {
+            final bloc = context.read<AuthBloc>();
+            if (bloc.state is AuthLoading) {
+              bloc.add(
+                const CancelLoadingEvent(),
+              ); // ✅ ده هيحوّل الحالة لـ failure
+            }
+          });
 
-
-            return CustomFadeInDown(
-              duration: 500,
-              child: CustomLinearButton(
-                width: MediaQuery.of(context).size.width,
-                onPressed: () {},
-                child: const CircularProgressIndicator(
-                  color: ColorsLight.mainColor,
+          return CustomFadeInDown(
+            duration: 500,
+            child: CustomLinearButton(
+              width: MediaQuery.of(context).size.width,
+              onPressed: () {},
+              child: const CircularProgressIndicator(
+                color: ColorsLight.mainColor,
+              ),
+            ),
+          );
+        } else {
+          return CustomFadeInDown(
+            duration: 500,
+            child: CustomLinearButton(
+              width: MediaQuery.of(context).size.width,
+              onPressed: () {
+                if (context
+                    .read<AuthBloc>()
+                    .formKey
+                    .currentState!
+                    .validate()) {
+                  context.read<AuthBloc>().add(
+                    const LoginEvent(),
+                  );
+                }
+              },
+              child: TextApp(
+                text: context.translate(LangKeys.login),
+                theme: context.textStyle.copyWith(
+                  fontSize: 22.sp,
+                  fontWeight: FontWeightHelper.medium,
+                  color: Colors.white,
                 ),
               ),
-            );
-          },
-          orElse: () {
-            return CustomFadeInDown(
-              duration: 500,
-              child: CustomLinearButton(
-                width: MediaQuery.of(context).size.width,
-                onPressed: () {
-                  if (context.read<AuthBloc>().formKey.currentState!.validate()) {
-                    context.read<AuthBloc>().add(
-                      const AuthEvent.login(),
-                    );
-                  }
-                },
-                child: TextApp(
-                  text: context.translate(LangKeys.login),
-                  theme: context.textStyle.copyWith(
-                    fontSize: 22.sp,
-                    fontWeight: FontWeightHelper.medium,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            );
-          },
-        );
+            ),
+          );
+        }
       },
     );
   }

@@ -173,9 +173,9 @@ class _UpdateCategoryButtonState extends State<UpdateCategoryButton> {
               listener: (context, state) {
                 if (state is UpdateCategorySuccess) {
                   ShowToast.showToastSuccessTop(
-                      message: 'Category Updated Successfully');
-                  Navigator.pop(context,true);
-                  context.read<GetAllCategoriesBloc>().add(CategoryEvent());
+                    message: 'Category Updated Successfully',
+                  );
+                  Navigator.pop(context, true);
                 } else if (state is UpdateCategoryFailure) {
                   ShowToast.showToastErrorTop(message: state.error);
                 }

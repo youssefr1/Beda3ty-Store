@@ -27,19 +27,17 @@ extension GoRouterExtensions on BuildContext {
   void pushAndRemoveUntilRoute(String route) {
     go(route); // go في GoRouter بيمسح اللي قبله أوتوماتيك
   }
-// Images
+
+  // Images
   MyAssets get image => Theme.of(this).extension<MyAssets>()!;
 
-
   // colors
-MyColors get color => Theme.of(this).extension<MyColors>()!;
+  MyColors get color => Theme.of(this).extension<MyColors>()!;
 
-// language
-String translate (String langKey){
-  return AppLocalizations.of(this)!.translate(langKey)!;
-}
+  // language
+  String translate(String langKey) {
+    return AppLocalizations.of(this)!.translate(langKey)!;
+  }
 
-TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
-
-
+  TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
 }

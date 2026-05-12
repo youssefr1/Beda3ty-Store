@@ -42,16 +42,15 @@ class AddCategoryBody extends StatelessWidget {
                       },
                     );
                   }
-
                   // ✅ Success state
                   else if (state is GetAllCategoriesSuccsse) {
                     final categories = state.categories;
                     return RefreshIndicator(
                       color: context.color.bluePinkDark,
                       onRefresh: () async {
-                        context
-                            .read<GetAllCategoriesBloc>()
-                            .add(CategoryEvent());
+                        context.read<GetAllCategoriesBloc>().add(
+                          CategoryEvent(),
+                        );
                       },
                       child: ListView.separated(
                         itemCount: categories.length,
@@ -67,12 +66,10 @@ class AddCategoryBody extends StatelessWidget {
                       ),
                     );
                   }
-
                   // ❌ Failure state
                   else if (state is GetAllCategoriesFailure) {
                     return const NoScreenScreen();
                   }
-
                   // 💤 Default
                   else {
                     return const SizedBox.shrink();

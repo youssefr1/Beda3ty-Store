@@ -12,7 +12,6 @@ abstract class CategoryRepository {
 }
 
 class CategoryRepositoryImpl extends CategoryRepository {
-
   CategoryRepositoryImpl({
     required this.dataSource,
     required this.updateDataSource,

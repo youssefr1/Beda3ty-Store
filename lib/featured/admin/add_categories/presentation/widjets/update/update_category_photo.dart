@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UpdateCategoryPhoto extends StatelessWidget {
   const UpdateCategoryPhoto({super.key, required this.imageurl});
-final String imageurl;
+  final String imageurl;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,7 +12,7 @@ final String imageurl;
       decoration: BoxDecoration(
         color: Colors.grey.shade600,
         borderRadius: BorderRadius.circular(15),
-        image:  DecorationImage(
+        image: DecorationImage(
           fit: BoxFit.fill,
           image: NetworkImage(imageurl),
         ),

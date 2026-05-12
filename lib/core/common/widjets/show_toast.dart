@@ -8,29 +8,26 @@ class ShowToast {
   static void showToastErrorTop({
     required String message,
     int? seconds,
-  }) =>
-      Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.TOP,
-        timeInSecForIosWeb: seconds ?? 3,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.sp,
-      );
+  }) => Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.TOP,
+    timeInSecForIosWeb: seconds ?? 3,
+    backgroundColor: Colors.red,
+    textColor: Colors.white,
+    fontSize: 16.sp,
+  );
 
   static void showToastSuccessTop({
-
     required String message,
     int? seconds,
-  }) =>
-      Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.TOP,
-        timeInSecForIosWeb: seconds ?? 3,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16.sp,
-      );
+  }) => Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.TOP,
+    timeInSecForIosWeb: seconds ?? 3,
+    backgroundColor: Colors.green,
+    textColor: Colors.white,
+    fontSize: 16.sp,
+  );
 }

@@ -11,12 +11,8 @@ abstract class UpdateCategoryDataSource {
 
 class UpdateCategoryDataSourceImpl extends UpdateCategoryDataSource {
   final Dio dio;
-  final String endPoint;
 
-  UpdateCategoryDataSourceImpl({
-    required this.dio,
-    required this.endPoint,
-  });
+  UpdateCategoryDataSourceImpl({required this.dio});
 
   @override
   Future<UpdateCategoryModel> updateCategory({
@@ -24,32 +20,18 @@ class UpdateCategoryDataSourceImpl extends UpdateCategoryDataSource {
     required String name,
     required String image,
   }) async {
-    const String mutation = r'''
-      mutation UpdateCategory($id: ID!, $changes: UpdateCategoryDto!) {
-        updateCategory(id: $id, changes: $changes) {
-          id
-          name
-          image
-        }
-      }
-    ''';
-
     try {
-      final response = await dio.post(
-        endPoint,
+      final response = await dio.put(
+        '/categories/$id',
         data: {
-          "query": mutation,
-          "variables": {
-            "id": id,
-            "changes": {"name": name, "image": image},
-          },
+          "name": name,
+          "image": image,
         },
-        options: Options(headers: {"Content-Type": "application/json"}),
       );
 
       print("✅ Update Category Response: ${response.data}");
 
-      final data = response.data['data']['updateCategory'] as Map<String, dynamic>;
+      final data = response.data as Map<String, dynamic>;
       return UpdateCategoryModel.fromJson(data);
     } on DioException catch (e) {
       print("❌ DioException: ${e.response?.data}");

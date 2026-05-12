@@ -1,6 +1,5 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-
 import 'package:astro/core/services/shared_pref/pref_keys.dart';
 import 'package:astro/core/services/shared_pref/shared_pref.dart';
 import 'package:dio/dio.dart';
@@ -18,14 +17,9 @@ class DioFactory {
     if (dio == null) {
       dio = Dio();
       dio!
+        ..options.baseUrl = 'https://api.escuelajs.co/api/v1/'
         ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut
-        ..options.headers['Authorization'] =
-            'Bearer ${SharedPref().getString(PrefKeys.accessToken)}';
-
-      debugPrint(
-        "[USER Token] ====> ${SharedPref().getString(PrefKeys.accessToken) ?? 'NULL TOKEN'}",
-      );
+        ..options.receiveTimeout = timeOut;
 
       addDioInterceptor();
       return dio!;
@@ -36,9 +30,21 @@ class DioFactory {
 
   static void addDioInterceptor() {
     dio?.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          final token = SharedPref().getString(PrefKeys.accessToken);
+          if (token != null) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          return handler.next(options);
+        },
+      ),
+    );
+    dio?.interceptors.add(
       PrettyDioLogger(
         request: false,
         compact: false,
+        responseBody: false,
       ),
     );
   }

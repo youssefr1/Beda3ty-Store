@@ -18,15 +18,11 @@ class UpdateProductBottomsheet extends StatefulWidget {
       _UpdateProductBottomsheetState();
 }
 
-class _UpdateProductBottomsheetState
-    extends State<UpdateProductBottomsheet> {
+class _UpdateProductBottomsheetState extends State<UpdateProductBottomsheet> {
   final fromKey = GlobalKey<FormState>();
-  TextEditingController titleControler =
-      TextEditingController();
-  TextEditingController priceController =
-      TextEditingController();
-  TextEditingController descriptionController =
-      TextEditingController();
+  TextEditingController titleControler = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
   String? categoryName;
 
   @override
@@ -163,7 +159,7 @@ class _UpdateProductBottomsheetState
                 height: 20.h,
               ),
               CustomCreateDropDown(
-                items: ['ahmed','sdasa'],
+                items: ['ahmed', 'sdasa'],
                 hintText: 'macbook',
                 onChanged: (value) {
                   setState(() {

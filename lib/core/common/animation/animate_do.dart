@@ -58,8 +58,6 @@ class CustomFadeInLeft extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return SharedPref().getString(PrefKeys.languageMode) == 'ar'
         ? FadeInLeft(
             delay: const Duration(milliseconds: 300),
@@ -87,7 +85,6 @@ class CustomFadeInRight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SharedPref().getString(PrefKeys.languageMode) == 'ar'
         ? FadeInRight(
             delay: const Duration(milliseconds: 300),

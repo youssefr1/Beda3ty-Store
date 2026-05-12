@@ -29,7 +29,10 @@ class LoginBodyView extends StatelessWidget {
             //dark mode and language
             const DarkAndLangBar(),
             // logo
-            Image.asset('assets/assets/images/core/logo.png',width: 190.w,),
+            Image.asset(
+              'assets/assets/images/core/logo.png',
+              width: 190.w,
+            ),
             // Welcome Info
             AuthTitleInfo(
               title: context.translate(LangKeys.login),
@@ -47,12 +50,12 @@ class LoginBodyView extends StatelessWidget {
             SizedBox(
               height: 30.h,
             ),
-             LoginButton(),
+            LoginButton(),
             SizedBox(
               height: 30.h,
             ),
             InkWell(
-              onTap: (){
+              onTap: () {
                 context.goRoute(AppRouter.signUp);
               },
               child: CustomFadeInUp(
@@ -65,7 +68,6 @@ class LoginBodyView extends StatelessWidget {
                     fontSize: 18.sp,
                     color: context.color.bluePinkLight,
                     fontWeight: FontWeightHelper.medium,
-
                   ),
                 ),
               ),

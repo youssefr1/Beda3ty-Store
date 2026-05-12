@@ -1,18 +1,12 @@
 import 'package:astro/core/app/upload_image/repo/upload_image_repo.dart';
 import 'package:astro/core/utils/image_pick.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 
 part 'upload_image_state.dart';
 
-part 'upload_image_cubit.freezed.dart';
-
 class UploadImageCubit extends Cubit<UploadImageState> {
-  UploadImageCubit(this._repo)
-    : super(const UploadImageState.initial());
+  UploadImageCubit(this._repo) : super(const UploadImageInitial());
   final UploadImageRepo _repo;
 
   String getImageUrl = '';
@@ -26,18 +20,18 @@ class UploadImageCubit extends Cubit<UploadImageState> {
     result.when(
       success: (image) {
         getImageUrl = image.location ?? '';
-        emit(UploadImageState.success());
+        emit(const UploadImageSuccess());
       },
       failure: (error) {
-        emit(UploadImageState.failure(errmessage: error));
+        emit(UploadImageFailure(errmessage: error));
       },
     );
   }
 
   // remove image
 
- void removeImage(){
+  void removeImage() {
     getImageUrl = '';
-    emit(UploadImageState.removeImage(imageUrl: getImageUrl));
- }
+    emit(UploadImageRemoveImage(imageUrl: getImageUrl));
+  }
 }
